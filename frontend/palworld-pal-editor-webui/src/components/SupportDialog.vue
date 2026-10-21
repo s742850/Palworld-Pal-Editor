@@ -2,6 +2,7 @@
 import { computed, nextTick, ref, watch } from 'vue'
 
 import UiIcon from '@/components/modules/UiIcon.vue'
+import { supportConfig } from '@/support-config'
 import { useAppStore } from '@/stores/app'
 import { useAppShellStore } from '@/stores/app-shell'
 import { useSessionStore } from '@/stores/session'
@@ -74,7 +75,7 @@ watch(() => shell.donationPromptOpen, async visible => {
         <img :src="publicAsset('icons/512.png')" alt="" class="support-logo">
         <div>
           <h2 id="support-dialog-title">{{ appStore.getTranslatedText('SupportDialog_Title') }}</h2>
-          <p id="support-dialog-intro">{{ appStore.getTranslatedText('SupportDialog_Intro') }}</p>
+          <p id="support-dialog-intro">{{ appStore.getTranslatedText(supportConfig ? 'Support_Fork_Intro' : 'SupportDialog_Intro') }}</p>
         </div>
         <button
           ref="closeButton"
@@ -88,6 +89,17 @@ watch(() => shell.donationPromptOpen, async visible => {
       </header>
 
       <div class="support-content">
+        <section v-if="supportConfig" class="support-panel support-fork">
+          <h3>{{ appStore.getTranslatedText('Support_Fork_Title') }}</h3>
+          <p>{{ supportConfig.name }}<span v-if="supportConfig.asset"> · {{ supportConfig.asset }}</span><span v-if="supportConfig.network"> · {{ supportConfig.network }}</span></p>
+          <p>{{ appStore.getTranslatedText('Support_Fork_Recipient') }}</p>
+          <input v-if="supportConfig.address" readonly :value="supportConfig.address" class="support-address"
+            :aria-label="appStore.getTranslatedText('Support_Fork_Address')"
+            @focus="$event.target.select()">
+          <a v-if="supportConfig.url" :href="supportConfig.url" target="_blank" rel="noopener noreferrer" class="support-primary">
+            {{ appStore.getTranslatedText('Support_Fork_Open') }}
+          </a>
+        </section>
         <section class="support-panel support-financial">
           <div class="support-section-heading">
             <div>
@@ -254,6 +266,8 @@ watch(() => shell.donationPromptOpen, async visible => {
 </template>
 
 <style scoped>
+.support-fork { grid-column: 1 / -1; }
+.support-address { width: 100%; box-sizing: border-box; margin-bottom: .75rem; padding: .75rem; color: var(--editor-color-text); background: var(--editor-color-control); border: 1px solid var(--editor-color-border); border-radius: .5rem; }
 .support-overlay {
   position: fixed;
   inset: 0;

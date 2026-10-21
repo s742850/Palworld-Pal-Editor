@@ -2,6 +2,7 @@ import json
 import os
 import platform
 import sys
+import secrets
 from pathlib import Path
 from typing import Optional
 
@@ -180,7 +181,7 @@ class Config:
     password: str = None
     nocli: bool = False
     _password_hash: str = None
-    JWT_SECRET_KEY: str = "X2Nvbm5sb3N0"
+    JWT_SECRET_KEY: str = secrets.token_hex(32)
     shownDonateInfo: dict[str, bool] = {}
 
     @classmethod
@@ -191,12 +192,20 @@ class Config:
             with path.open("r", encoding="utf-8") as file:
                 data = json.load(file)
                 for key, value in data.items():
-                    if hasattr(cls, key):
+                    if key != "JWT_SECRET_KEY" and hasattr(cls, key):
                         setattr(cls, key, value)
 
     @classmethod
     def get_runtime_port(cls) -> int:
         return cls.port if cls._runtime_port is None else cls._runtime_port
+
+    @classmethod
+    def get_bind_host(cls) -> str:
+        if cls.mode == "web" and os.environ.get("PAL_EDITOR_ALLOW_REMOTE") == "1":
+            if len(cls.password or "") < 12:
+                raise ValueError("Remote mode requires a password of at least 12 characters")
+            return "0.0.0.0"
+        return "127.0.0.1"
 
     @classmethod
     def set_configs(cls, attrs: dict):
@@ -219,7 +228,7 @@ class Config:
     @classmethod
     def __str__(cls):
         dic = cls.to_dict()
-        attrs = [f"{key}: {dic[key]}" for key in dic]
+        attrs = [f"{key}: {'[redacted]' if key == 'password' else dic[key]}" for key in dic]
         return ", ".join(attrs)
 
     @classmethod
@@ -229,8 +238,6 @@ class Config:
             'mode': Config.mode,
             'port': Config.port,
             'path': Config.path,
-            'password': Config.password,
-            'JWT_SECRET_KEY': Config.JWT_SECRET_KEY,
             'shownDonateInfo': Config.shownDonateInfo,
         }
 

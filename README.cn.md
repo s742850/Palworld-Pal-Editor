@@ -1,5 +1,7 @@
 # Palworld Pal Editor
 
+本地修改版的材料、背包、装备操作与 Windows 安装说明：[繁體中文使用手冊](WINDOWS_GUIDE.zh-TW.md)。
+
 <p align="center">
   <a href="./README.md">English</a> · <strong>简体中文</strong>
 </p>

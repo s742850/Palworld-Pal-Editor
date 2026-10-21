@@ -154,6 +154,7 @@ export const usePlayersStore = defineStore("players", () => {
 
     async function loadInventory() {
         const playerUid = rosters.activePlayerUid;
+        inventory.value = null;
         if (playerUid === null) {
             inventory.value = null;
             return false;
@@ -166,7 +167,7 @@ export const usePlayersStore = defineStore("players", () => {
             backend.reportApiFailure(error, "Operation_Load_Player_Data");
             return false;
         }
-        if (!session.isCurrentSession(epoch)) return false;
+        if (!session.isCurrentSession(epoch) || rosters.activePlayerUid !== playerUid) return false;
         inventory.value = snapshot;
         return true;
     }
@@ -176,8 +177,11 @@ export const usePlayersStore = defineStore("players", () => {
     async function applySlotWrite(write) {
         const playerUid = rosters.activePlayerUid;
         if (playerUid === null) return false;
+        const epoch = session.sessionEpoch;
         try {
-            inventory.value = await write(playerUid);
+            const snapshot = await write(playerUid);
+            if (!session.isCurrentSession(epoch) || rosters.activePlayerUid !== playerUid) return false;
+            inventory.value = snapshot;
         } catch (error) {
             backend.reportApiFailure(error, "Operation_Update_Player");
             return false;

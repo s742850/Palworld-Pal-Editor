@@ -72,7 +72,8 @@ watch(() => props.open, async value => {
     return
   }
   query.value = ''
-  selectedId.value = props.slot?.static_id ?? null
+  selectedId.value = props.slot?.count > 0 && props.slot?.static_id !== 'None'
+    ? props.slot.static_id : null
   pinnedItemId.value = selectedId.value
     && !filteredItems.value.some(item => item.InternalName === selectedId.value)
     ? selectedId.value

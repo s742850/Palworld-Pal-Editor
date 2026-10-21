@@ -38,7 +38,7 @@ def run_setup(monkeypatch, mode, selected_port):
 
 @pytest.mark.parametrize(
     ("mode", "expected_host"),
-    [("gui", "127.0.0.1"), ("web", "0.0.0.0")],
+    [("gui", "127.0.0.1"), ("web", "127.0.0.1")],
 )
 def test_startup_checks_the_address_the_backend_will_bind(
     monkeypatch, mode, expected_host

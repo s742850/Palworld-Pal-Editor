@@ -52,7 +52,8 @@ const hideTooltip = () => { tooltipVisible.value = false }
 <template>
   <div class="inventory-item-slot" :class="[`rarity-${rarity}`, { square, 'has-name': showName }]"
     @pointerenter="showTooltip" @pointermove="item && moveTooltip($event)" @pointerleave="hideTooltip">
-    <button type="button" class="item-slot-button" :aria-label="label" @click="emit('edit')">
+    <button type="button" class="item-slot-button" :disabled="!editable" :aria-label="label" @click="emit('edit')">
+      <span v-if="!slot.static_id || slot.static_id === 'None' || slot.count === 0" class="empty-slot-add">+</span>
       <span v-if="item?.IconKey" class="item-icon" :class="{ layered: item.OverlayIconKey }">
         <img :src="iconUrl(item.IconKey)" alt="">
         <img v-if="item.OverlayIconKey" class="item-icon-overlay" :src="iconUrl(item.OverlayIconKey)" alt="">
@@ -69,7 +70,8 @@ const hideTooltip = () => { tooltipVisible.value = false }
       :title="appStore.getTranslatedText('Inventory_Repair')"
       :aria-label="appStore.getTranslatedText('Inventory_Repair')"
       @click.stop="emit('repair')"><UiIcon name="maximum" /></button>
-    <button v-if="item && editable" type="button" class="slot-clear"
+    <button v-if="slot.count > 0 && editable" type="button" class="slot-clear"
+      :title="appStore.getTranslatedText('Inventory_Clear')"
       :aria-label="appStore.getTranslatedText('Inventory_Clear')" @click.stop="emit('clear')">×</button>
   </div>
 
@@ -128,7 +130,9 @@ const hideTooltip = () => { tooltipVisible.value = false }
   cursor: pointer;
   text-shadow: 0 1px 4px #000;
 }
-.inventory-item-slot:hover .slot-clear, .slot-clear:focus-visible { opacity: 1; }
+.inventory-item-slot .slot-clear { opacity: 1; background: rgb(0 0 0 / .5); border-radius: .25rem; }
+.empty-slot-add { color: var(--editor-color-muted); font-size: 1.6rem; }
+.item-slot-button:disabled { cursor: default; opacity: .5; }
 .slot-clear:hover { color: #fca5a5; }
 .durability { position: absolute; right: 0; bottom: 0; left: 0; height: .2rem; overflow: hidden; border-radius: 0 0 .5rem .5rem; background: rgb(255 255 255 / .15); }
 .durability i { display: block; height: 100%; background: #dbeafe; }

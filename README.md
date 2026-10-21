@@ -1,5 +1,7 @@
 # Palworld Pal Editor
 
+Local fork: [Windows installation, inventory editing, and security notes (Traditional Chinese)](WINDOWS_GUIDE.zh-TW.md).
+
 <p align="center">
   <strong>English</strong> · <a href="./README.cn.md">简体中文</a>
 </p>

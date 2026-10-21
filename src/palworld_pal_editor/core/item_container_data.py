@@ -508,6 +508,16 @@ class ItemContainerData:
             item, count = self._validate_item(
                 container_kind, slot_index, item_id, count, allow_overstack
             )
+            # Applying a quantity change must not recreate an existing weapon:
+            # its GUID also owns durability, ammunition and passive skills.
+            if old_slot is not None and old_slot["RawData"]["value"]["item"]["static_id"] == item_id:
+                snapshot = self._normalized_slot(old_slot, slot_index)
+                if not snapshot["warning"] and (
+                    item["DynamicType"] is None
+                    or (old_dynamic_id in self.dynamic_items and snapshot["dynamic_type"] == item["DynamicType"])
+                ):
+                    old_slot["RawData"]["value"]["count"] = count
+                    return self._normalized_slot(old_slot, slot_index)
             dynamic_id = (
                 self._new_dynamic_id() if item["DynamicType"] is not None else None
             )

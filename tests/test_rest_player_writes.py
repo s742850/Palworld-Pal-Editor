@@ -143,6 +143,32 @@ class PlayerWriteTests(unittest.TestCase):
             DataProvider.get_item("YakushimaBlade")["MagazineSize"], slot["ammo"]
         )
 
+    def test_applying_same_equipment_preserves_its_state(self):
+        data = self.manager.item_container_data
+        first = data.patch_slot(self.player, "weapons", 1, "YakushimaBlade", 1, allow_overstack=False)
+        raw = data.dynamic_items[first["dynamic_id"]]["RawData"]["value"]
+        raw["durability"] = 12.5
+        raw["remaining_bullets"] = 0
+        raw["passive_skill_list"] = ["test-existing-passive"]
+        updated = data.patch_slot(self.player, "weapons", 1, "YakushimaBlade", 1, allow_overstack=False)
+        self.assertEqual(first["dynamic_id"], updated["dynamic_id"])
+        self.assertEqual(12.5, updated["durability"])
+        self.assertEqual(["test-existing-passive"], raw["passive_skill_list"])
+        data.patch_slot(self.player, "weapons", 1, None, 0, allow_overstack=False)
+
+    def test_material_create_update_delete_and_invalid_count(self):
+        url = f"/api/players/{self.uid}/inventory/0"
+        def write(item, count):
+            return self.client.patch(url, json={"containerKind": "common", "itemId": item, "count": count}, headers=self.headers)
+        for count in (10, 20):
+            response = write("Wood", count)
+            self.assertEqual(200, response.status_code)
+            self.assertEqual(count, response.get_json()["containers"]["common"]["slots"][0]["count"])
+        self.assertEqual(400, write("Wood", -1).status_code)
+        response = write(None, 0)
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(0, response.get_json()["containers"]["common"]["slots"][0]["count"])
+
     def test_placing_armor_writes_a_dynamic_entry_without_the_weapon_fields(self):
         """Armor shares the durability half of the shape and none of the ammo half."""
         response = self.client.patch(

@@ -76,7 +76,7 @@ def setup_config_from_args():
 
         Config._runtime_port = Config.port
         if not Config.debug:
-            bind_host = "0.0.0.0" if Config.mode == "web" else "127.0.0.1"
+            bind_host = Config.get_bind_host()
             if (port := check_or_generate_port(Config.port, bind_host)) != Config.port:
                 LOGGER.warning(f"Port {Config.port} not available, use {port} instead.")
             Config._runtime_port = port

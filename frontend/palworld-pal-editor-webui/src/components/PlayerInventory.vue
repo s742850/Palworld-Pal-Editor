@@ -13,6 +13,7 @@ const appStore = useAppStore()
 const playersStore = usePlayersStore()
 const rostersStore = useRostersStore()
 const bagTab = ref('common')
+const addCategory = ref('all')
 const editing = ref(null)
 const inventoryEditor = ref(null)
 const inventoryLayout = ref(null)
@@ -28,6 +29,7 @@ const armorLabels = ['Inventory_Head', 'Inventory_Body', 'Inventory_Accessory', 
 const armorGroups = ['Head', 'Body', 'Accessory', 'Accessory', 'Shield', 'Glider', 'Accessory', 'Accessory', 'SphereModule']
 
 watch(() => rostersStore.activePlayerUid, () => playersStore.loadInventory(), { immediate: true })
+watch(() => rostersStore.activePlayerUid, () => { editing.value = null })
 
 const containers = computed(() => playersStore.inventory?.containers || {})
 const currentBag = computed(() => containers.value[bagTab.value])
@@ -49,12 +51,19 @@ const candidates = computed(() => {
   return catalogsStore.items.filter(item => {
     if (!item.Legal || item.Disabled || item.MonsterOnly || item.Group === 'None' || item.DynamicType === 'egg') return false
     if (kind === 'common') return item.Group !== 'KeyItem'
+      && (editing.value.category !== 'material' || item.TypeA === 'Material')
+      && (editing.value.category !== 'equipment' || ['Weapon', 'Head', 'Body', 'Accessory', 'Shield', 'Glider', 'SphereModule'].includes(item.Group))
     return item.Group === required
   })
 })
 const openSlot = (kind, slot) => {
   if (containers.value[kind]?.editable === false) return
   editing.value = { kind, slot }
+}
+const emptyBagSlot = computed(() => currentBag.value?.slots.find(slot => !slot.static_id || slot.static_id === 'None' || slot.count === 0))
+const addItem = () => {
+  if (!emptyBagSlot.value || !isEditable(bagTab.value)) return
+  editing.value = { kind: bagTab.value, slot: emptyBagSlot.value, category: bagTab.value === 'common' ? addCategory.value : 'all' }
 }
 const applySlot = async ({ itemId, count }) => {
   const target = editing.value
@@ -120,6 +129,17 @@ onBeforeUnmount(() => {
           <button type="button" :class="{ active: bagTab === 'common' }" @click="bagTab = 'common'">{{ appStore.getTranslatedText('Inventory_Backpack') }}</button>
           <button type="button" :class="{ active: bagTab === 'key_items' }" @click="bagTab = 'key_items'">{{ appStore.getTranslatedText('Inventory_Key_Items') }}</button>
         </nav>
+        <div class="inventory-actions">
+          <select v-if="bagTab === 'common'" v-model="addCategory" :aria-label="appStore.getTranslatedText('Inventory_Filter_Type')">
+            <option value="all">{{ appStore.getTranslatedText('Inventory_Add_All') }}</option>
+            <option value="material">{{ appStore.getTranslatedText('Inventory_Add_Material') }}</option>
+            <option value="equipment">{{ appStore.getTranslatedText('Inventory_Add_Equipment') }}</option>
+          </select>
+          <button type="button" class="editor-button" :disabled="!emptyBagSlot || !isEditable(bagTab)" @click="addItem">
+            + {{ appStore.getTranslatedText('Inventory_Add') }}
+          </button>
+          <small v-if="currentBag && !emptyBagSlot">{{ appStore.getTranslatedText('Inventory_Full') }}</small>
+        </div>
         <div ref="bagScroll" class="bag-scroll">
           <p v-if="currentBag?.warning" class="container-warning">{{ currentBag.warning }}</p>
           <div ref="bagGrid" class="slot-grid slot-grid--bag">
@@ -226,10 +246,14 @@ onBeforeUnmount(() => {
 .accessory-group { display: grid; align-content: start; gap: .25rem; padding-top: .45rem; border-top: 1px solid var(--editor-color-border); color: var(--editor-color-muted); font-size: .68rem; }
 .accessory-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; }
 .bag-panel { overflow: hidden; }
+.inventory-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; padding: .5rem .75rem; }
+.inventory-actions select { min-width: 0; color: var(--editor-color-text); background: var(--editor-color-control); border-radius: .4rem; padding: .4rem; }
+.inventory-actions small { color: var(--editor-color-muted); }
 .bag-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: .55rem; border-bottom: 1px solid var(--editor-color-border); }
 .bag-tabs button { padding: .75rem; border: 0; border-radius: .55rem; color: var(--editor-color-muted); background: transparent; cursor: pointer; }
 .bag-tabs button.active { color: var(--editor-color-text); background: var(--editor-color-primary); }
-.bag-scroll { height: calc(100% - 4rem); overflow: auto; padding: var(--editor-space-3); }
+.bag-panel { display: flex; flex-direction: column; }
+.bag-scroll { flex: 1; min-height: 0; overflow: auto; padding: var(--editor-space-3); }
 .slot-grid--bag { grid-template-columns: repeat(var(--bag-columns), var(--inventory-slot-height)); margin-top: 0; }
 .equipment-panel :deep(.inventory-item-slot) { height: var(--inventory-slot-height); }
 .container-warning, .inventory-loading { color: var(--editor-color-muted); }

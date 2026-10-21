@@ -73,6 +73,14 @@ def _allowed_cors_origin():
 
 @app.before_request
 def cors_preflight():
+    # Reject DNS rebinding and cross-site writes before login or file operations.
+    if Config.get_bind_host() == "127.0.0.1":
+        if request.host.split(":", 1)[0].lower() not in {"localhost", "127.0.0.1"}:
+            return reply(status=2, msg="Untrusted Host"), 403
+    if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
+        origin = request.headers.get("Origin")
+        if origin and origin != request.host_url.rstrip("/") and not _allowed_cors_origin():
+            return reply(status=2, msg="Origin is not allowed"), 403
     if (
         request.method == "OPTIONS"
         and request.headers.get("Access-Control-Request-Method")
@@ -83,6 +91,9 @@ def cors_preflight():
 
 @app.after_request
 def cors_response(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
     origin = _allowed_cors_origin()
     if origin:
         response.headers["Access-Control-Allow-Origin"] = origin
@@ -161,7 +172,6 @@ def unexpected_error(error):
         data={
             "error": {
                 "code": type(error).__name__,
-                "log": stack_trace,
             }
         },
         msg="An unexpected backend error occurred.",
@@ -176,7 +186,7 @@ def main():
             threading.Timer(1, lambda: webbrowser.open(f"http://127.0.0.1:{port}") ).start()
         except:
             LOGGER.info("Failed to launch browser.")
-    host = '0.0.0.0' if Config.mode == "web" else "127.0.0.1"
+    host = Config.get_bind_host()
     if Config.debug:
         app.run(use_reloader=True, port=port, threaded=True)
     else:
