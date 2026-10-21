@@ -18,6 +18,14 @@ export function getPlayerInventory(playerUid, options) {
     return request("get", `${playerPath(playerUid)}/inventory`, options);
 }
 
+export function getGraduationCatalog(playerUid, options) {
+    return request('get', `${playerPath(playerUid)}/graduation-kit`, options);
+}
+
+export function addGraduationKit(playerUid, preset, options) {
+    return request('post', `${playerPath(playerUid)}/graduation-kit`, { ...options, body: { preset } });
+}
+
 export function addAllPalGear(playerUid, options) {
     return request('post', `${playerPath(playerUid)}/inventory/pal-gear`, options);
 }

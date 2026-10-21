@@ -207,6 +207,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout release notes
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
       - name: Download platform artifacts
         uses: actions/download-artifact@v8
         with:
@@ -232,6 +237,17 @@ jobs:
             exit 1
           fi
 
+          COMMIT_URL="https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          cat > nightly-notes.md <<EOF
+          Automated builds from **${VERSION_TAG}**. / 自動建置版本。
+
+          - Branch / 分支: \`${GITHUB_REF_NAME}\`
+          - Commit / 提交: [\`${GITHUB_SHA}\`](${COMMIT_URL})
+          - Built / 建置時間: \`${BUILT_AT}\` UTC
+          EOF
+          printf '\n' >> nightly-notes.md
+          cat RELEASE_NOTES.md >> nightly-notes.md
+
           gh release upload "$RELEASE_TAG" "${FILES[@]}" --clobber
 
           mapfile -t OLD_ASSETS < <(
@@ -244,12 +260,4 @@ jobs:
             fi
           done
 
-          COMMIT_URL="https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
-          cat > nightly-notes.md <<EOF
-          Automated builds from **${VERSION_TAG}**.
-
-          - Branch: \`${GITHUB_REF_NAME}\`
-          - Commit: [\`${GITHUB_SHA}\`](${COMMIT_URL})
-          - Built: \`${BUILT_AT}\` UTC
-          EOF
           gh release edit "$RELEASE_TAG" --notes-file nightly-notes.md

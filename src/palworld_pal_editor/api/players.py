@@ -20,10 +20,29 @@ from palworld_pal_editor.core import SaveManager
 from palworld_pal_editor.core.pal_objects import PalObjects
 from palworld_pal_editor.core.player_entity import PlayerEntity
 from palworld_pal_editor.core.map_progress import progress_status, local_map, unlock_all_travel, HOST_UID
+from palworld_pal_editor.core.graduation_kit import add_kit, catalog as graduation_catalog
 from palworld_pal_editor.utils import DataProvider
 
 players_blueprint = Blueprint("players", __name__)
 register_error_handlers(players_blueprint)
+
+
+@players_blueprint.route('/<player_uid>/graduation-kit', methods=['GET', 'POST'])
+@jwt_required()
+def player_graduation_kit(player_uid):
+    manager = SaveManager()
+    with manager.session_lock:
+        player = require_player(player_uid)
+        if request.method == 'GET':
+            return {'presets': graduation_catalog()}
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict) or not isinstance(payload.get('preset'), str):
+            raise ApiError('GRADUATION_KIT_INVALID', 'A preset name is required')
+        try:
+            result = add_kit(manager, player, payload['preset'])
+        except (ValueError, KeyError, TypeError) as error:
+            raise ApiError('GRADUATION_KIT_INVALID', str(error))
+        return {'result': result, 'inventory': manager.item_container_data.inventory_snapshot(player)}
 
 
 @players_blueprint.route('/<player_uid>/map-progress', methods=['GET'])

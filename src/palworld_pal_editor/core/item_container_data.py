@@ -567,7 +567,7 @@ class ItemContainerData:
             raise
 
     def add_missing_items(self, player: PlayerEntity, container_kind: str,
-                          requested: list[tuple[str, int]]) -> dict:
+                          requested: list[tuple[str, int]], *, dry_run: bool = False) -> dict:
         """Add a complete batch to empty slots, without replacing existing items.
 
         Validation, capacity and dynamic records are prepared before any mutation.
@@ -602,12 +602,15 @@ class ItemContainerData:
             new_slots.append(self._new_slot_entry(index, count, item_id, dynamic_id))
             if dynamic_id is not None:
                 new_dynamics.append(self._new_dynamic_entry(item_id, item, dynamic_id))
+        result = {'added': len(missing), 'skipped': len(requested) - len(missing), 'available': len(free) - len(missing)}
+        if dry_run:
+            return result
         claimed = {entry['RawData']['value']['slot_index'] for entry in new_slots}
         slots[:] = sorted([entry for entry in slots if entry['RawData']['value']['slot_index'] not in claimed] + new_slots,
                           key=lambda entry: entry['RawData']['value']['slot_index'])
         self.dynamic_entries.extend(new_dynamics)
         self._rebuild_indexes()
-        return {'added': len(missing), 'skipped': len(requested) - len(missing), 'available': len(free) - len(missing)}
+        return result
 
     def add_all_pal_gear(self, player: PlayerEntity) -> dict:
         items = sorted((item for item in DataProvider.get_item_data().values()

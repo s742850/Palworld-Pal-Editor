@@ -18,3 +18,14 @@ The bundled catalog covers 182 observed 1.0 travel IDs and 8 local Warp IDs. It
 does not claim automatic compatibility with future game maps. Unknown saved
 flags are preserved. / 目前型錄涵蓋已觀察到的 1.0 傳送點；未知旗標保留原值，
 不宣稱能自動支援未來版本。
+
+## Endgame presets / 畢業套組
+
+Role selection, online discussion links, all species/item IDs and the date of
+research are recorded in `ENDGAME_KIT.md`. The presets contain only bundled
+catalog entries. No remote executable, script or preset is fetched at runtime.
+Online opinions are selection references, not a claim of universal optimality.
+
+用途選擇、網路討論連結、物種與物品 ID 及查閱日期見 `ENDGAME_KIT.md`。
+只使用內建型錄項目，執行時不下載外部修改器、腳本或名單；網路排名僅為
+選擇參考，不當成所有配置最強的證明。

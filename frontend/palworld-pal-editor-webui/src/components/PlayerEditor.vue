@@ -29,6 +29,7 @@ import { computed, ref } from 'vue'
 
 import PlayerInventory from '@/components/PlayerInventory.vue'
 import PlayerMapProgress from '@/components/PlayerMapProgress.vue'
+import GraduationKit from '@/components/GraduationKit.vue'
 import SegmentedRange from '@/components/modules/SegmentedRange.vue'
 import NumberStepper from '@/components/modules/NumberStepper.vue'
 import TechCard from '@/components/TechCard.vue'
@@ -97,6 +98,9 @@ const technologyRows = computed(() => Object.entries(catalogsStore.technologiesB
       </button>
       <button type="button" :class="{ active: activeTab === 'map' }" @click="activeTab = 'map'">
         {{ appStore.getTranslatedText('Map_Title') }}
+      </button>
+      <button type="button" :class="{ active: activeTab === 'graduation' }" @click="activeTab = 'graduation'">
+        {{ appStore.getTranslatedText('Graduation_Title') }}
       </button>
     </nav>
 
@@ -253,6 +257,7 @@ const technologyRows = computed(() => Object.entries(catalogsStore.technologiesB
       </div>
     </section>
     </div>
+    <GraduationKit v-else-if="activeTab === 'graduation'" />
     <PlayerMapProgress v-else-if="activeTab === 'map'" />
     <PlayerInventory v-else />
   </section>
@@ -285,7 +290,7 @@ const technologyRows = computed(() => Object.entries(catalogsStore.technologiesB
 .player-character { display: grid; gap: var(--editor-space-3); min-width: 0; }
 .player-tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: .35rem;
   padding: .4rem;
   border: 1px solid var(--editor-color-glass-border);

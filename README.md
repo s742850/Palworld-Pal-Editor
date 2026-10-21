@@ -2,6 +2,8 @@
 
 Local fork: [Windows installation, inventory editing, and security notes (Traditional Chinese)](WINDOWS_GUIDE.zh-TW.md).
 
+Fork updates: [bilingual release notes](RELEASE_NOTES.md) · [combat, worker and mount endgame kits](ENDGAME_KIT.md).
+
 <p align="center">
   <strong>English</strong> · <a href="./README.cn.md">简体中文</a>
 </p>

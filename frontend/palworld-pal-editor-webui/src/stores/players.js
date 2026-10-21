@@ -14,6 +14,7 @@ import { defineStore } from "pinia";
 
 import {
     addAllPalGear as addAllPalGearRequest,
+    addGraduationKit as addGraduationKitRequest,
     getPlayerInventory,
     listPlayers,
     patchInventorySlot,
@@ -26,7 +27,7 @@ import { useBackendStore } from "./backend.js";
 import { useCatalogsStore } from "./catalogs.js";
 import { useMessagesStore } from "./messages.js";
 import { usePalsStore } from "./pals.js";
-import { useRostersStore } from "./rosters.js";
+import { playerRosterKey, useRostersStore } from "./rosters.js";
 import { gated, useSessionStore } from "./session.js";
 
 export const usePlayersStore = defineStore("players", () => {
@@ -213,6 +214,24 @@ export const usePlayersStore = defineStore("players", () => {
         });
     }
 
+    async function addGraduationKit(preset) {
+        const playerUid = rosters.activePlayerUid;
+        if (playerUid === null) return false;
+        const epoch = session.sessionEpoch;
+        try {
+            const reply = await addGraduationKitRequest(playerUid, preset);
+            if (!session.isCurrentSession(epoch) || rosters.activePlayerUid !== playerUid) return false;
+            inventory.value = reply.inventory;
+            messages.showToast('Graduation_Added', 'success', [reply.result.pals_added, reply.result.items_added]);
+            await rosters.loadRosters();
+            if (session.isCurrentSession(epoch) && rosters.activePlayerUid === playerUid) await rosters.loadRosterPals(playerRosterKey(playerUid));
+            return true;
+        } catch (error) {
+            backend.reportApiFailure(error, 'Operation_Update_Player');
+            return false;
+        }
+    }
+
     function clear() {
         playersByUid.value = new Map();
         inventory.value = null;
@@ -239,6 +258,7 @@ export const usePlayersStore = defineStore("players", () => {
             updateInventorySlot,
             repairInventorySlot,
             addAllPalGear,
+            addGraduationKit,
         }),
     };
 });

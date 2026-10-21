@@ -1,5 +1,31 @@
 # Release notes / 更新說明
 
+## 2026-10-21 · 4. Endgame combat, workers and mounts / 戰鬥、基地與坐騎畢業套組
+
+### 繁體中文
+
+- 新增「畢業套組」頁籤，列出實際名單：戰鬥 20 隻、基地 16 隻、坐騎 5 隻、完整 41 隻，並保留核心 5 隻。依使用者後續需求納入基地與坐騎，不再限定只有一隊。
+- 戰鬥、工作、坐騎分別配置四個被動；同種不同用途產生不同個體。以編輯器支援的合法養成上限（Lv.80、滿信賴、4 星、潛力 100、魂 Rank 20、覺醒、已有工種適性 10）建立普通可取得帕魯，不加入塔主或型錄拒絕的物種。
+- 自然習得招式保留於已學列表，以型錄威力選 3 招裝備；不宣稱此簡化選招是所有流派的 DPS 最佳解。網路查閱和用途選擇記錄在 `ENDGAME_KIT.md`，數據仍以內建型錄核對。
+- 新增帕魯放入所選玩家本世界終端；補齊合法終盤武器、防具、實用飾品、彈藥、球、藥品、少量素材及對應鞍具。裝備放背包供自行穿戴，保留既有裝備與玩家等級／能力點。沒有啟用停用物品或假造高階飾品。
+- 空間不足整批拒絕，帕魯或物品中途失敗整批回滾；不覆蓋占用格，已有物品不補堆疊。可見的預設名稱仍在原玩家終端時跳過重複帕魯，改名或移走後可再次新增。
+- 仍需手動儲存變更。基地工人需自行派駐；牧場產量、搬運、走位和 SAN 仍受遊戲機制影響。完整限制與名單見 `ENDGAME_KIT.md`。
+- 自動 Nightly 發布流程會附上本檔中英文說明；這項流程調整不代表 GitHub 已產出安裝檔，須以遠端 Actions／Release 的實際結果為準。
+- 驗證：6 個新增後端整合測試涵蓋 41 隻完整套組存檔往返、原內容保留、重複執行、空間不足、兩種中途失敗回滾、API 權限與不自動存檔；235 個前端測試及正式建置通過。只用測試副本，未啟動遊戲。
+- 最終完整回歸：297 個後端測試與 230 個子測試全部通過；唯一警告來自測試刻意簽發舊短金鑰以確認拒絕，而非執行環境採用該金鑰。
+
+### English
+
+- Added an Endgame kit tab with visible rosters: combat 20, workers 16, mounts 5, all 41, or core 5. Includes base and mount builds following the user's expanded requirements.
+- Creates normal supported Pals with role-specific passives and this editor's supported progression limits: level 80, maximum friendship, four stars, 100 talents, soul ranks 20, awakening and level-10 existing work types. Different roles create separate individuals of the same species; tower bosses and catalog-invalid species are excluded.
+- Grants supported natural skills and equips the three highest catalog-power skills. This is not a universal DPS optimizer. Research and selection rationale are documented in `ENDGAME_KIT.md`; IDs are validated against bundled data.
+- Pals go into the selected player's world Palbox. Missing enabled endgame gear, accessories, ammunition, spheres, medicine, a few materials and matching saddles are added. Equipment stays in the backpack for manual equipping; existing gear, player level and stat allocations are preserved. Disabled higher-numbered accessory variants are excluded.
+- Preflights all capacity; failures roll back the entire batch. Existing slots/stacks remain unchanged. Default-named gifts still in that player's Palbox are skipped; renaming/moving them permits another copy.
+- Save Changes is still required. Assign workers yourself; ranch yields, hauling, pathing and SAN remain subject to game mechanics. See `ENDGAME_KIT.md` for the roster and limits.
+- The existing Nightly publisher now includes this bilingual changelog. This workflow change does not itself confirm a published binary; check the remote Actions/Release result.
+- Validation: 6 new backend integration tests cover the full-41 save/reload, preservation, idempotence, capacity refusal, two mid-batch rollback cases, authentication and no auto-save; 235 frontend tests and production build passed. Only fixture copies were used; the game was not launched.
+- Final full regression: all 297 backend tests and 230 subtests passed. The sole warning comes from a test deliberately signing with an old short key to verify rejection, not from the runtime using that key.
+
 ## 2026-10-21 · 3. Map reveal and fast travel / 地圖全開與傳送點
 
 ### 繁體中文

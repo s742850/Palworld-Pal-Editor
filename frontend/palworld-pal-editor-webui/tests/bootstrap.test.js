@@ -249,6 +249,25 @@ function mockBackend({
     return calls;
 }
 
+test('endgame kit refreshes the player roster and inventory without saving', async () => {
+    const store = newStore();
+    const calls = mockBackend({ password: false, loaded: true,
+        players: [{ InstanceId: 'player-1', NickName: 'Tester' }], pals: [] });
+    await store.bootstrap();
+    calls.length = 0;
+    axios.post = async (url, body) => {
+        calls.push(['POST', url, body]);
+        assert.equal(url, '/api/players/player-1/graduation-kit');
+        assert.deepEqual(body, { preset: 'mounts' });
+        return resource({ result: { pals_added: 5, items_added: 23 }, inventory: { containers: {} } });
+    };
+    assert.equal(await players.addGraduationKit('mounts'), true);
+    assert.deepEqual(players.inventory, { containers: {} });
+    assert.ok(calls.some(([method, url]) => method === 'GET' && url.endsWith('/api/rosters/player%3Aplayer-1/pals')));
+    assert.ok(calls.some(([method, url]) => method === 'GET' && url.endsWith('/api/rosters')));
+    assert.ok(calls.every(([, url]) => !url.includes('/api/session/saves')));
+});
+
 test("connectBackend promotes a reachable candidate and routes its asset URLs", async () => {
     const store = newStore();
     const calls = mockBackend({ password: true });

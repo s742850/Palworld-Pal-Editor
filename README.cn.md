@@ -2,6 +2,8 @@
 
 本地修改版的材料、背包、装备操作与 Windows 安装说明：[繁體中文使用手冊](WINDOWS_GUIDE.zh-TW.md)。
 
+修改版更新：[中英文更新说明](RELEASE_NOTES.md) · [战斗、基地与坐骑毕业套组](ENDGAME_KIT.md)。
+
 <p align="center">
   <a href="./README.md">English</a> · <strong>简体中文</strong>
 </p>
