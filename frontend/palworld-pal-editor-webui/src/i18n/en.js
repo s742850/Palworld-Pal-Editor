@@ -1,4 +1,7 @@
 export default {
+    Inventory_All_Gear: "Add all Pal saddles & gear",
+    Inventory_All_Gear_Hint: "Adds missing legal saddles and partner-skill gear to empty key-item slots. Existing items are kept. Save Changes to write to disk.",
+    Inventory_Batch_Added: "Added {{0}} items; kept {{1}} existing items. Save Changes to write to disk.",
     Support_Fork_Address: "Public receiving address (select and copy)",
     Support_Fork_Intro: "Support the original project or this fork's maintainer. Recipients are listed separately.",
     Support_Fork_Title: "Support this fork's maintainer",

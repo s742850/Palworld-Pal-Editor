@@ -1,5 +1,21 @@
 # Release notes / 更新說明
 
+## 2026-10-21 · 2. All Pal saddles and gear / 一鍵新增全部鞍具與專用裝備
+
+### 繁體中文
+
+- 在「重要物品」新增一鍵按鈕，依內建遊戲型錄加入全部合法的帕魯鞍具及伙伴技能專用裝備（包含專用武器、手套等）。
+- 只補缺少的物品，每件 1 個，保留原有欄位與其他重要物品；重複執行不會重複新增。空格不足或資料驗證失敗時整批拒絕，不會只加入一半。
+- 仍需按「儲存變更」才寫入存檔，不操作跨界終端或其他玩家。
+- 驗證：23 個相關後端測試與 33 個子測試、234 個前端測試及正式建置通過。
+
+### English
+
+- Added an all-Pal-gear button to Key Items, using the bundled legal item catalog for saddles and partner-skill equipment, including dedicated weapons and gloves.
+- Adds one of each missing item into empty slots, preserves existing items, and skips duplicates on repeated clicks. Capacity/validation failures reject the entire batch before mutation.
+- Save Changes is still required to write to disk. Shared Global Pal Storage and other players are untouched.
+- Validation: 23 related backend tests plus 33 subtests, 234 frontend tests and the production build passed.
+
 ## 2026-10-21 · 1. Inventory, equipment and local security / 物品、裝備與本機防護
 
 ### 繁體中文

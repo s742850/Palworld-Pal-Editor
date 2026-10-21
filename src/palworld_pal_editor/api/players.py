@@ -233,3 +233,16 @@ def post_player_inventory_slot_repair(player_uid: str, slot_index: int):
         except ValueError as error:
             raise ApiError("INVENTORY_REPAIR_REFUSED", str(error))
         return manager.item_container_data.inventory_snapshot(player)
+
+
+@players_blueprint.route('/<player_uid>/inventory/pal-gear', methods=['POST'])
+@jwt_required()
+def add_player_pal_gear(player_uid: str):
+    manager = SaveManager()
+    with manager.session_lock:
+        player = require_player(player_uid)
+        try:
+            result = manager.item_container_data.add_all_pal_gear(player)
+        except ValueError as error:
+            raise ApiError('INVENTORY_BATCH_INVALID', str(error))
+        return {'inventory': manager.item_container_data.inventory_snapshot(player), 'result': result}

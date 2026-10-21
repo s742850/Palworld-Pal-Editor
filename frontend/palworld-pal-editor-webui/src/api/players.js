@@ -18,6 +18,10 @@ export function getPlayerInventory(playerUid, options) {
     return request("get", `${playerPath(playerUid)}/inventory`, options);
 }
 
+export function addAllPalGear(playerUid, options) {
+    return request('post', `${playerPath(playerUid)}/inventory/pal-gear`, options);
+}
+
 // `slotIndex` numbers a slot within `containerKind`, which is why the kind is in
 // the body. The reply is the whole inventory, not the one slot.
 export function patchInventorySlot(playerUid, slotIndex, change, options) {

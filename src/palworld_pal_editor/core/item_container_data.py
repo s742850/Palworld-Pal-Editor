@@ -565,3 +565,53 @@ class ItemContainerData:
             self.dynamic_entries[:] = original_dynamics
             self._rebuild_indexes()
             raise
+
+    def add_missing_items(self, player: PlayerEntity, container_kind: str,
+                          requested: list[tuple[str, int]]) -> dict:
+        """Add a complete batch to empty slots, without replacing existing items.
+
+        Validation, capacity and dynamic records are prepared before any mutation.
+        Existing item IDs are skipped, so repeated clicks are idempotent.
+        """
+        if container_kind not in EDITABLE_CONTAINERS:
+            raise ValueError(f"Container is not editable: {container_kind}")
+        _, container = self._container_for(player, container_kind)
+        if container is None:
+            raise ValueError(f"Player {container_kind} container is missing")
+        slots = self._slot_values(container)
+        size = self._slot_num(container)
+        raw_slots = [entry['RawData']['value'] for entry in slots]
+        indexes = [entry['slot_index'] for entry in raw_slots]
+        if len(set(indexes)) != len(indexes) or any(type(i) is not int or not 0 <= i < size for i in indexes):
+            raise ValueError('Container has invalid or duplicate slot indexes')
+        existing = {entry['item']['static_id'] for entry in raw_slots if entry['count'] > 0}
+        occupied = {entry['slot_index'] for entry in raw_slots if entry['count'] > 0}
+        free = [i for i in range(size) if i not in occupied]
+        missing = []
+        seen = set(existing)
+        for item_id, count in requested:
+            if item_id not in seen:
+                missing.append((item_id, count))
+                seen.add(item_id)
+        if len(missing) > len(free):
+            raise ValueError(f'Not enough empty slots: need {len(missing)}, available {len(free)}; no items were changed')
+        new_slots, new_dynamics = [], []
+        for index, (item_id, count) in zip(free, missing):
+            item, count = self._validate_item(container_kind, index, item_id, count, False)
+            dynamic_id = self._new_dynamic_id() if item['DynamicType'] is not None else None
+            new_slots.append(self._new_slot_entry(index, count, item_id, dynamic_id))
+            if dynamic_id is not None:
+                new_dynamics.append(self._new_dynamic_entry(item_id, item, dynamic_id))
+        claimed = {entry['RawData']['value']['slot_index'] for entry in new_slots}
+        slots[:] = sorted([entry for entry in slots if entry['RawData']['value']['slot_index'] not in claimed] + new_slots,
+                          key=lambda entry: entry['RawData']['value']['slot_index'])
+        self.dynamic_entries.extend(new_dynamics)
+        self._rebuild_indexes()
+        return {'added': len(missing), 'skipped': len(requested) - len(missing), 'available': len(free) - len(missing)}
+
+    def add_all_pal_gear(self, player: PlayerEntity) -> dict:
+        items = sorted((item for item in DataProvider.get_item_data().values()
+                        if item['TypeB'] == 'Essential_PalGear' and item['Group'] == 'KeyItem'
+                        and item['Legal'] and not item['Disabled'] and not item['MonsterOnly']),
+                       key=lambda item: item['InternalName'])
+        return self.add_missing_items(player, 'key_items', [(item['InternalName'], 1) for item in items])

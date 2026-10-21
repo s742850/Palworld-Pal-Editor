@@ -1,4 +1,7 @@
 export default {
+    Inventory_All_Gear: "一鍵新增全部鞍具／帕魯裝備",
+    Inventory_All_Gear_Hint: "將缺少的合法鞍具與伙伴技能專用裝備加入重要物品空格；保留既有物品，仍需儲存變更才寫入存檔。",
+    Inventory_Batch_Added: "已新增 {{0}} 件，保留 {{1}} 件已有物品；請儲存變更。",
     PlayerEditor_Character: "角色",
     PlayerEditor_Items: "物品／背包",
     Inventory_Type_Material: "材料",

@@ -13,6 +13,7 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 
 import {
+    addAllPalGear as addAllPalGearRequest,
     getPlayerInventory,
     listPlayers,
     patchInventorySlot,
@@ -204,6 +205,14 @@ export const usePlayersStore = defineStore("players", () => {
         );
     }
 
+    function addAllPalGear() {
+        return applySlotWrite(async playerUid => {
+            const reply = await addAllPalGearRequest(playerUid);
+            messages.showToast('Inventory_Batch_Added', 'success', [reply.result.added, reply.result.skipped]);
+            return reply.inventory;
+        });
+    }
+
     function clear() {
         playersByUid.value = new Map();
         inventory.value = null;
@@ -229,6 +238,7 @@ export const usePlayersStore = defineStore("players", () => {
             loadInventory,
             updateInventorySlot,
             repairInventorySlot,
+            addAllPalGear,
         }),
     };
 });

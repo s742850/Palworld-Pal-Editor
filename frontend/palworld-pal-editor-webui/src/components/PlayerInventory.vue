@@ -138,6 +138,9 @@ onBeforeUnmount(() => {
           <button type="button" class="editor-button" :disabled="!emptyBagSlot || !isEditable(bagTab)" @click="addItem">
             + {{ appStore.getTranslatedText('Inventory_Add') }}
           </button>
+          <button v-if="bagTab === 'key_items'" type="button" class="editor-button"
+            :disabled="!isEditable('key_items')" :title="appStore.getTranslatedText('Inventory_All_Gear_Hint')"
+            @click="playersStore.addAllPalGear">{{ appStore.getTranslatedText('Inventory_All_Gear') }}</button>
           <small v-if="currentBag && !emptyBagSlot">{{ appStore.getTranslatedText('Inventory_Full') }}</small>
         </div>
         <div ref="bagScroll" class="bag-scroll">
