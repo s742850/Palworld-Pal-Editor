@@ -1,4 +1,9 @@
 export default {
+    Map_Title: "地圖與傳送點",
+    Map_Description: "開啟單機主機的本地地圖，並解鎖所選玩家的 Palworld 1.0 已知傳送點；不支援的格式會停用操作。",
+    Map_Reveal: "地圖全開",
+    Map_Travel: "一鍵解鎖全部已知傳送點",
+    Map_Save_Reminder: "變更仍在記憶體；請按儲存變更，再進入遊戲確認。",
     Inventory_All_Gear: "一鍵新增全部鞍具／帕魯裝備",
     Inventory_All_Gear_Hint: "將缺少的合法鞍具與伙伴技能專用裝備加入重要物品空格；保留既有物品，仍需儲存變更才寫入存檔。",
     Inventory_Batch_Added: "已新增 {{0}} 件，保留 {{1}} 件已有物品；請儲存變更。",

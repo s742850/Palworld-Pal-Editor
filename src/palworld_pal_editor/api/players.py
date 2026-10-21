@@ -19,10 +19,39 @@ from palworld_pal_editor.api.errors import ApiError, register_error_handlers
 from palworld_pal_editor.core import SaveManager
 from palworld_pal_editor.core.pal_objects import PalObjects
 from palworld_pal_editor.core.player_entity import PlayerEntity
+from palworld_pal_editor.core.map_progress import progress_status, local_map, unlock_all_travel, HOST_UID
 from palworld_pal_editor.utils import DataProvider
 
 players_blueprint = Blueprint("players", __name__)
 register_error_handlers(players_blueprint)
+
+
+@players_blueprint.route('/<player_uid>/map-progress', methods=['GET'])
+@jwt_required()
+def get_map_progress(player_uid):
+    manager = SaveManager()
+    with manager.session_lock:
+        return progress_status(manager, require_player(player_uid))
+
+
+@players_blueprint.route('/<player_uid>/map-progress/<operation>', methods=['POST'])
+@jwt_required()
+def update_map_progress(player_uid, operation):
+    manager = SaveManager()
+    with manager.session_lock:
+        player = require_player(player_uid)
+        try:
+            if operation == 'reveal':
+                if str(player.PlayerUId) != HOST_UID:
+                    raise ValueError('Map reveal is supported only for the local single-player host')
+                local_map(manager).reveal()
+            elif operation == 'unlock-travel':
+                unlock_all_travel(manager, player)
+            else:
+                raise ValueError('Unknown map operation')
+        except (KeyError, TypeError, ValueError) as error:
+            raise ApiError('MAP_PROGRESS_INVALID', str(error))
+        return progress_status(manager, player)
 
 
 def player_resource(player: PlayerEntity) -> dict:

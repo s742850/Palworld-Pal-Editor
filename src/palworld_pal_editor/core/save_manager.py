@@ -122,6 +122,7 @@ class SaveManager:
         self.guild_data = None
         self.camp_data = None
         self.guild_lab_data = None
+        self.local_map_data = None
 
         self._dps_storages: dict[str, PalStorageSaveFile] = {}
         self._global_palbox: PalStorageSaveFile | None = None
@@ -297,6 +298,8 @@ class SaveManager:
                 else output_path / "Players" / storage.path.name
             )
             outputs.append((target, storage.serialize()))
+        if self.local_map_data is not None and self.local_map_data.dirty:
+            outputs.append((output_path / 'LocalData.sav', self.local_map_data.serialize()))
         return outputs, dirty_storages
 
     def _save(self, file_path: str) -> bool:
@@ -368,6 +371,10 @@ class SaveManager:
 
         for storage in dirty_storages:
             storage.dirty = False
+        if self.local_map_data is not None and self.local_map_data.dirty:
+            if output_path == self.local_map_data.path.parent:
+                self.local_map_data.original = next(data for target, data in outputs if target.name == 'LocalData.sav')
+            self.local_map_data.dirty = False
         # Every output file is on disk, so the settlement they contain is durable,
         # the created set may finally be consumed, and every Pal on screen is once
         # again what the save says it is.

@@ -1,4 +1,9 @@
 export default {
+    Map_Title: "Map & fast travel",
+    Map_Description: "Reveal the host's local map and unlock known Palworld 1.0 travel points for the selected player. Unsupported layouts are disabled.",
+    Map_Reveal: "Reveal all maps",
+    Map_Travel: "Unlock all known travel points",
+    Map_Save_Reminder: "Changes are in memory. Save Changes, then enter the game to verify.",
     Inventory_All_Gear: "Add all Pal saddles & gear",
     Inventory_All_Gear_Hint: "Adds missing legal saddles and partner-skill gear to empty key-item slots. Existing items are kept. Save Changes to write to disk.",
     Inventory_Batch_Added: "Added {{0}} items; kept {{1}} existing items. Save Changes to write to disk.",

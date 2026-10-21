@@ -1,5 +1,25 @@
 # Release notes / 更新說明
 
+## 2026-10-21 · 3. Map reveal and fast travel / 地圖全開與傳送點
+
+### 繁體中文
+
+- 玩家頁新增「地圖與傳送點」：清除主地圖／世界樹迷霧，並解鎖固定 1.0 型錄中的 182 個傳送點與單機主機的 8 個本地 Warp 標記。
+- 迷霧只更動 RGBA 遮罩的 alpha；保留 RGB、地圖標記及其他進度。僅允許單機主機操作目前世界的 `LocalData.sav`，不替其他多人玩家猜測本地檔案。
+- 以記憶體編輯、儲存變更、備份及失敗回滾整合 LocalData。檔案若被遊戲或外部程式改動，拒絕覆蓋並要求重新載入。
+- 避開上游原生壓縮器在大量零值遮罩的已知錯誤：LocalData 使用標準 Oodle 複製區塊，保留 PlM 格式並在寫入前解碼比對；檔案可能增至約 5 MB。
+- 未知格式停用；未列於型錄的旗標保留，不宣稱自動涵蓋未來版本。來源見 `DATA_SOURCES.md`。
+- 驗證：10 個相關測試與 34 個子測試通過；另重跑 5 個地圖測試，包含中斷 LocalData 寫入後還原與重試、重新讀取及其他欄位不變。前端 234 個測試及正式建置通過；未開啟使用者遊戲。
+
+### English
+
+- Added a Map & Fast Travel tab: reveal MainMap/Tree fog, unlock 182 known 1.0 travel IDs and the single-player host's 8 local Warp IDs.
+- Changes only fog-mask alpha bytes, preserving RGB, custom markers and unrelated progress. LocalData editing is restricted to the single-player host in the loaded world.
+- LocalData participates in Save Changes, backups and rollback. External file changes are detected before overwrite.
+- Avoided a native encoder bug on cleared textures by using standard Oodle copied blocks for LocalData, preserving PlM format and verifying decoded bytes before writing. LocalData may grow to about 5 MB.
+- Unknown layouts are disabled; non-catalog flags remain unchanged. Future game-map compatibility is not assumed. See `DATA_SOURCES.md`.
+- Validation: 10 related tests plus 34 subtests passed; 5 map tests were rerun including interrupted-write rollback/retry, reload and unrelated-field preservation. 234 frontend tests and production build passed. The user's game was not launched.
+
 ## 2026-10-21 · 2. All Pal saddles and gear / 一鍵新增全部鞍具與專用裝備
 
 ### 繁體中文
