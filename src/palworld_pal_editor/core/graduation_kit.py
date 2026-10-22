@@ -4,6 +4,7 @@ The nickname is an intentional, visible idempotency marker, scoped to the owner'
 world Palbox. Renaming/moving a gift out of that box permits another copy.
 """
 from palworld_pal_editor.core.pal_entity import PalEntity
+from palworld_pal_editor.config import Config
 from palworld_pal_editor.core.pal_mutations import TouchedParents
 from palworld_pal_editor.core.pal_objects import PalObjects
 from palworld_pal_editor.core.pal_storage_adapters import WorldPalAdapter
@@ -19,6 +20,25 @@ BASE = ('KabukiMan', 'BlueSkyDragon', 'FlowerPrince', 'ThunderDragonMan', 'Monoc
         'WingGolem_Fire', 'ChickenPal', 'CowPal', 'SoldierBee', 'LazyCatfish', 'WhiteMoth')
 MOUNTS = ('JetDragon', 'GhostDragon_Fire', 'DarkMechaDragon', 'BlackCentaur', 'PoseidonOrca')
 GROUPS = {'combat': COMBAT, 'base': BASE, 'mounts': MOUNTS}
+ROLE_LABELS = {
+    'en': ('Combat', 'Base', 'Mount'),
+    'de': ('Kampf', 'Basis', 'Reittier'),
+    'es': ('Combate', 'Base', 'Montura'),
+    'es-MX': ('Combate', 'Base', 'Montura'),
+    'fr': ('Combat', 'Base', 'Monture'),
+    'id': ('Tempur', 'Markas', 'Tunggangan'),
+    'it': ('Combattimento', 'Base', 'Cavalcatura'),
+    'ja': ('戦闘', '拠点', '騎乗'),
+    'ko': ('전투', '거점', '탈것'),
+    'pl': ('Walka', 'Baza', 'Wierzchowiec'),
+    'pt-BR': ('Combate', 'Base', 'Montaria'),
+    'ru': ('Бой', 'База', 'Езда'),
+    'th': ('ต่อสู้', 'ฐาน', 'พาหนะ'),
+    'tr': ('Savaş', 'Üs', 'Binek'),
+    'vi': ('Chiến đấu', 'Căn cứ', 'Thú cưỡi'),
+    'zh-CN': ('战斗', '基地', '坐骑'),
+    'zh-TW': ('戰鬥', '基地', '坐騎'),
+}
 PASSIVES = {
     'combat': ('Legend', 'PAL_ALLAttack_up3', 'CoolTimeReduction_Up_1', 'MutationPal_Immortal'),
     'base': ('CraftSpeed_up3', 'CraftSpeed_up2', 'PAL_CorporateSlave', 'CraftSpeed_up1'),
@@ -39,8 +59,17 @@ def definition(preset='all'):
     return [(role, species) for role, species_list in groups.items() for species in species_list]
 
 
-def marker(role, species):
-    return f'Graduation-{role}-{species}'
+def marker(role, species, locale=None):
+    locale = locale or Config.i18n
+    names = PAL_DATA[species]['I18n']
+    name = names.get(locale) or names.get('en') or species
+    suffix = ROLE_LABELS.get(locale, ROLE_LABELS['en'])[tuple(GROUPS).index(role)]
+    return f'{name}－{suffix}'
+
+
+def _markers(role, species):
+    return {f'Graduation-{role}-{species}',
+            *(marker(role, species, locale) for locale in ROLE_LABELS)}
 
 
 def catalog():
@@ -66,7 +95,8 @@ def _plan(manager, player, preset):
     records = manager.pal_repository.records_for_storage(WorldPalAdapter.storage_key(container.ID))
     existing = {(r.pal.CharacterID, r.pal.NickName) for r in records
                 if r.storage_kind == 'world' and str(r.pal.OwnerPlayerUId) == str(player.PlayerUId)}
-    missing = [(role, species) for role, species in entries if (species, marker(role, species)) not in existing]
+    missing = [(role, species) for role, species in entries
+               if not any((species, name) in existing for name in _markers(role, species))]
     free = container.SlotNum - len(container.slots)
     if free < len(missing):
         raise ValueError(f'Not enough world Palbox slots: need {len(missing)}, available {free}; nothing changed')
@@ -105,6 +135,17 @@ def add_kit(manager, player, preset='all'):
     original_dynamics = list(data.dynamic_entries)
     before_records = set(manager.pal_repository.records())
     try:
+        # Refresh recognized gifts, including old markers, when applying a kit.
+        # Keep these writes inside the same rollback boundary as the additions.
+        names = {(species, old): marker(role, species)
+                 for role, species in entries for old in _markers(role, species)}
+        for record in manager.pal_repository.records_for_storage(WorldPalAdapter.storage_key(container.ID)):
+            pal = record.pal
+            name = names.get((pal.CharacterID, pal.NickName))
+            if (name and record.storage_kind == 'world'
+                    and str(pal.OwnerPlayerUId) == str(player.PlayerUId) and pal.NickName != name):
+                touched.watch_dict(pal.pal_param)
+                pal.NickName = name
         for role, species in missing:
             parameter = PalObjects.DefaultPalSaveParameter(player.PlayerUId, container.ID, 0)
             parameter['value']['CharacterID'] = PalObjects.NameProperty(species)

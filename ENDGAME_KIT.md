@@ -10,8 +10,8 @@ Close the game and back up first. Start with `start-local.cmd`, open TEST, selec
 
 - 帕魯加入所選玩家的**本世界帕魯終端**，不塞進隊伍、基地或跨界終端。工人需自行派駐，坐騎需自行編入隊伍。新裝備放背包，不覆蓋現有穿戴裝備。不同用途同種帕魯是不同個體，故 41 隻不是 41 個不同物種。
 - Pals land in the selected player's world Palbox. Assign workers and party mounts yourself. Equipment goes into the backpack, preserving worn gear. The same species may appear as separate individuals for different roles; 41 Pals does not mean 41 distinct species.
-- 只加入缺少的物品，已有堆疊保留原數量。依 `Graduation-用途-物種ID` 名稱辨識此玩家終端內已有套組；改名、移出終端或刪除後，再按可能新增另一隻。原有同種帕魯不會被強化或取代。
-- Missing item IDs are added once; existing stacks retain their counts. Gifts are identified by their visible `Graduation-role-species` nickname in this player's Palbox. Renaming, moving or deleting a gift permits another copy. Existing unmarked Pals are preserved.
+- 只加入缺少的物品，已有堆疊保留原數量。暱稱依目前介面語言使用「物種名稱－用途」，例如「空渦龍－戰鬥／基地／坐騎」。再次套用會辨識所有支援語言的預設暱稱及舊版 `Graduation-用途-物種ID`，並更新為目前語言，不因語言切換重複新增；只處理所選套組、此玩家終端內的個體。自行改名、移出終端或刪除後，再按可能新增另一隻。原有未標記帕魯不會被強化或取代。
+- Missing item IDs are added once; existing stacks retain their counts. Nicknames use the selected interface language and a role suffix, e.g. `Jetragon－Combat`, `Jetragon－Base`, or `Jetragon－Mount`. Reapplying recognizes default names in every supported language and legacy `Graduation-role-species` names, updating matching gifts to the current language without duplicates. This only affects the selected preset in this player's Palbox. Custom renaming, moving or deleting a gift permits another copy. Existing unmarked Pals are preserved.
 - 預先檢查所有帕魯及物品空格；不足則整批拒絕。中途例外會還原本批內容。API 不自動存檔；真正存檔使用既有備份及回滾流程。
 - Every target is checked before mutation. Insufficient space rejects the entire batch; unexpected failures roll it back. The API never auto-saves; Save Changes uses the normal backup/rollback path.
 

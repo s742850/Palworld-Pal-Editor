@@ -1,5 +1,13 @@
 # Release notes / 更新說明
 
+## 2026-10-22 · Localized endgame nicknames / 畢業套組暱稱在地化
+
+- 畢業套組暱稱依選擇的介面語言顯示物種名稱及戰鬥／基地／坐騎後綴，區分同種不同用途的個體。
+- 再次套用會更新所選套組中可辨識的舊版與跨語言預設暱稱；切換語言不會重複新增。自行命名的帕魯保持原名。仍需按「儲存變更」。
+- Endgame nicknames now use the selected interface language with Combat / Base / Mount suffixes to distinguish roles of the same species.
+- Reapplying updates recognized legacy and localized default names in the selected preset without language-induced duplicates. Custom names are preserved. Save Changes is still required.
+- 驗證 / Validation：25 個套組測試通過，涵蓋 17 種語言、舊名稱轉換、跨語言去重、改名保留、存檔往返與失敗回滾；前端正式建置通過。僅使用測試副本，未進行遊戲內驗收。 / 25 kit tests passed, covering 17 locales, legacy migration, cross-language deduplication, custom-name preservation, save/reload and rollback. Frontend production build passed. Fixture copies only; in-game acceptance remains unverified.
+
 ## 2026-10-21 · 4. Endgame combat, workers and mounts / 戰鬥、基地與坐騎畢業套組
 
 ### 繁體中文
