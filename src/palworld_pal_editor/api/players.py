@@ -21,10 +21,39 @@ from palworld_pal_editor.core.pal_objects import PalObjects
 from palworld_pal_editor.core.player_entity import PlayerEntity
 from palworld_pal_editor.core.map_progress import progress_status, local_map, unlock_all_travel, HOST_UID
 from palworld_pal_editor.core.graduation_kit import add_kit, catalog as graduation_catalog
+from palworld_pal_editor.core.adventure_assistant import (
+    recommendations, apply_recommendation, StaleRecommendation,
+)
 from palworld_pal_editor.utils import DataProvider
 
 players_blueprint = Blueprint("players", __name__)
 register_error_handlers(players_blueprint)
+
+
+@players_blueprint.route('/<player_uid>/adventure', methods=['GET', 'POST'])
+@jwt_required()
+def player_adventure(player_uid):
+    manager = SaveManager()
+    with manager.session_lock:
+        player = require_player(player_uid)
+        try:
+            if request.method == 'GET':
+                ceiling = request.args.get('ceiling')
+                return recommendations(manager, player, request.args.get('goal', 'explore'),
+                                       int(ceiling) if ceiling is not None else None)
+            payload = request.get_json(silent=True)
+            if not isinstance(payload, dict):
+                raise ValueError('Request body must be an object')
+            if set(payload) != {'goal', 'ceiling', 'recommendationId', 'token'}:
+                raise ValueError('Only the confirmed recommendation may be applied')
+            result = apply_recommendation(manager, player, payload['goal'], payload['ceiling'],
+                                          payload['recommendationId'], payload['token'])
+        except StaleRecommendation as error:
+            raise ApiError('ADVENTURE_STALE', str(error), status=409)
+        except (ValueError, KeyError, TypeError) as error:
+            raise ApiError('ADVENTURE_INVALID', str(error))
+        return {'result': result, 'inventory': manager.item_container_data.inventory_snapshot(player),
+                'advice': recommendations(manager, player, payload['goal'], payload['ceiling'])}
 
 
 @players_blueprint.route('/<player_uid>/graduation-kit', methods=['GET', 'POST'])

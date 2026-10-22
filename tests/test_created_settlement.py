@@ -34,9 +34,8 @@ class CreatedSettlementTests(unittest.TestCase):
 
     def capture_count(self, paldeck_key):
         # Read the MapProperty the way `inc_pal_capture_count` writes it: a list of
-        # {key, value} entries, not a dict. (`PlayerEntity.get_pal_capture_count`
-        # subscripts that list with the name and swallows the TypeError, so it
-        # answers 0 for everything -- pre-existing, and it has no other caller.)
+        # {key, value} entries, not a dict. Keep this independent of the public
+        # getter so settlement tests verify the native representation as well.
         for entry in self.player.PalCaptureCount or []:
             if entry["key"].lower() == paldeck_key.lower():
                 return entry["value"]

@@ -1,5 +1,14 @@
 # Release notes / 更新說明
 
+## 2026-10-23 · Adventure assistant / 冒險助手
+
+- 保留畢業套組，新增獨立冒險助手。選擇探索捕捉、準備戰鬥、基地生產或移動探索後，依目前等級、已解鎖科技、捕捉紀錄與現有夥伴提供建議；可降低協助等級上限。
+- 逐項「查看新增內容 → 套用並新增」，取消不寫入。物品只補建議差額；帕魯限已捕捉的精選普通物種，個體值 0、無額外被動、不提升濃縮。已有適用夥伴時優先建議使用。仍需按「儲存變更」。
+- 修正捕捉次數原先將 MapProperty 清單當字典、導致一律讀成 0 的問題。重新載入存檔或推薦條件改變時，舊確認失效；容量不足不覆寫既有內容，中途失敗回滾。新增不會繞過夥伴科技解鎖門檻。
+- 第一版為精選入門清單，不是完整後期攻略。僅統計一般背包，不含基地箱子；沒有持久領取冷卻。繁中、簡中、英文介面，其他語言的新文案使用英文後備，遊戲物種與物品名稱仍依介面語言。
+- Endgame kits are preserved. A separate Adventure assistant explains curated suggestions and adds only after explicit per-item confirmation. Recommendations use level limits, unlocked recipes, capture history and existing world Pals. Supply top-ups and ordinary partners remain pending until Save Changes; stale confirmations and capacity failures cannot overwrite possessions. The capture-count getter now reads native MapProperty entries correctly. This is a limited starter rule set, with no persistent allowance/cooldown.
+- 驗證 / Validation：測試副本涵蓋新增、容量、重複與過期確認、儲存往返、回滾及 API 權限；前端操作測試與正式建置通過；Chrome 模擬 API 驗證查看、取消、套用、過期更新、空狀態及 360px 排版。未讀寫玩家實際存檔，未進行遊戲內驗收。 / Fixture-only backend validation, frontend tests and production build; real Chrome with a mocked API verifies the confirmation workflow and narrow layout. No live saves edited; in-game acceptance remains unverified.
+
 ## 2026-10-23 · Mount kit backpack-capacity fix / 坐騎套組背包容量修正
 
 - 飛行／陸地／水上坐騎套組不再因一般背包缺少 21 個終盤物資空格而整批停止；該套組只新增 5 隻坐騎及缺少的對應鞍具，重要物品欄仍維持容量預檢與整批回滾。

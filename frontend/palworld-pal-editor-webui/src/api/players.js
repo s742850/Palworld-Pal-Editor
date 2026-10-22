@@ -22,6 +22,16 @@ export function getGraduationCatalog(playerUid, options) {
     return request('get', `${playerPath(playerUid)}/graduation-kit`, options);
 }
 
+export function getAdventureAdvice(playerUid, goal, ceiling, options) {
+    const query = new URLSearchParams({ goal });
+    if (ceiling !== null) query.set('ceiling', ceiling);
+    return request('get', `${playerPath(playerUid)}/adventure?${query}`, options);
+}
+
+export function applyAdventureAdvice(playerUid, payload) {
+    return request('post', `${playerPath(playerUid)}/adventure`, { body: payload });
+}
+
 export function addGraduationKit(playerUid, preset, options) {
     return request('post', `${playerPath(playerUid)}/graduation-kit`, { ...options, body: { preset } });
 }
