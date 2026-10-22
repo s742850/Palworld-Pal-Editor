@@ -110,7 +110,13 @@ def _plan(manager, player, preset):
     items = DataProvider.get_item_data()
     gear = [(f'SkillUnlock_{species}', 1) for _, species in entries
             if f'SkillUnlock_{species}' in items]
-    batches = [('common', [(i, 1) for i in EQUIPMENT] + list(SUPPLIES)), ('key_items', list(dict.fromkeys(gear)))]
+    batches = []
+    # The backpack loadout is for combat presets. Worker and mount presets only
+    # need their Pals and matching partner gear, so a crowded backpack must not
+    # prevent those role-specific Pals from being created.
+    if preset in {'all', 'combat', 'core'}:
+        batches.append(('common', [(i, 1) for i in EQUIPMENT] + list(SUPPLIES)))
+    batches.append(('key_items', list(dict.fromkeys(gear))))
     # Check every container before creating even one Pal or item.
     for kind, requested in batches:
         manager.item_container_data.add_missing_items(player, kind, requested, dry_run=True)

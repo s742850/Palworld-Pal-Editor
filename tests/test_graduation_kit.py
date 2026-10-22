@@ -6,7 +6,15 @@ import pytest
 from flask_jwt_extended import create_access_token
 
 from palworld_pal_editor.config import Config
-from palworld_pal_editor.core.graduation_kit import add_kit, definition, marker, PASSIVES, EQUIPMENT, ROLE_LABELS
+from palworld_pal_editor.core.graduation_kit import (
+    add_kit,
+    definition,
+    marker,
+    PASSIVES,
+    EQUIPMENT,
+    MOUNTS,
+    ROLE_LABELS,
+)
 from palworld_pal_editor.utils.data_provider import PAL_DATA, I18N_LIST
 from palworld_pal_editor.core.map_progress import HOST_UID
 from palworld_pal_editor.core.save_manager import SaveManager
@@ -161,6 +169,25 @@ def test_backpack_capacity_refuses_before_creating_pals(world):
     with pytest.raises(ValueError, match='Not enough empty slots'):
         add_kit(manager, player)
     assert state(manager, player) == before
+
+
+def test_mount_kit_does_not_require_space_for_combat_supplies(world):
+    manager, player = world
+    data = manager.item_container_data
+    _, bag = data._container_for(player, 'common')
+    size = data._slot_num(bag)
+    occupied = {s['slot_index'] for s in data.inventory_snapshot(player)['containers']['common']['slots'] if s['count']}
+    for index in range(size):
+        if index not in occupied:
+            data.patch_slot(player, 'common', index, 'Wood', 1, allow_overstack=False)
+    common_before = copy.deepcopy(data._slot_values(bag))
+
+    result = add_kit(manager, player, 'mounts')
+
+    assert result['pals_added'] == len(MOUNTS)
+    assert data._slot_values(bag) == common_before
+    key_items = {slot['static_id'] for slot in data.inventory_snapshot(player)['containers']['key_items']['slots']}
+    assert {f'SkillUnlock_{species}' for species in MOUNTS} <= key_items
 
 
 def test_mid_batch_failure_restores_palbox_guild_records_and_items(world, monkeypatch):

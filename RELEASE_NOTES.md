@@ -1,5 +1,13 @@
 # Release notes / 更新說明
 
+## 2026-10-23 · Mount kit backpack-capacity fix / 坐騎套組背包容量修正
+
+- 飛行／陸地／水上坐騎套組不再因一般背包缺少 21 個終盤物資空格而整批停止；該套組只新增 5 隻坐騎及缺少的對應鞍具，重要物品欄仍維持容量預檢與整批回滾。
+- 完整、戰鬥及核心戰鬥套組仍會補齊終盤裝備與物資，並維持原本的一般背包容量檢查。
+- The air/land/water mount preset no longer aborts because the common backpack lacks 21 slots for the combat loadout. It adds the five mounts and missing matching saddles, while retaining atomic Key Item capacity checks and rollback.
+- Complete, combat, and core-combat presets still add the endgame loadout and retain their common-backpack capacity preflight.
+- 驗證 / Validation：26 個畢業套組測試、235 個前端測試及正式建置通過；另有 486 個後端測試與 407 個子測試通過，3 項與本次修改無關的封裝／發布工具測試因本機缺少未追蹤審核輸出與 `npm` 指令而失敗。僅使用測試副本，未進行遊戲內驗收。 / 26 graduation-kit tests, 235 frontend tests, and the production build passed. The wider backend run passed 486 tests and 407 subtests; three unrelated packaging/publisher-tool tests failed because this checkout lacks an untracked review artifact and an `npm` executable. Fixture copies only; in-game acceptance remains unverified.
+
 ## 2026-10-22 · Localized endgame nicknames / 畢業套組暱稱在地化
 
 - 畢業套組暱稱依選擇的介面語言顯示物種名稱及戰鬥／基地／坐騎後綴，區分同種不同用途的個體。
