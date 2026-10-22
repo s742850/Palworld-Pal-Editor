@@ -512,13 +512,10 @@ class PlayerEntity:
         return PalObjects.get_MapProperty(record_data.get("PaldeckUnlockFlag", None))
 
     def get_pal_capture_count(self, name: str) -> int:
-        # MapProperty decodes to key/value entries, not a name-indexed dict.
-        # Match the representation used by inc_pal_capture_count below.
-        for record in self.PalCaptureCount or []:
-            if str(record.get('key', '')).casefold() == name.casefold():
-                value = record.get('value')
-                return max(0, value) if type(value) is int else 0
-        return 0
+        try:
+            return self._player_save_data["RecordData"]["value"]["PalCaptureCount"]["value"][name]
+        except:
+            return 0
         
     def inc_pal_capture_count(self, name: str):
         self.try_create_pal_record_data()

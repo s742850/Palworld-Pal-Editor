@@ -105,9 +105,6 @@ class SaveManager:
         of this attempt mixed with the previous save.
         """
         self.file_path = None
-        # Bind recommendation confirmations to this load, even when reopening
-        # the same path. This is editor state, never serialized into the save.
-        self.adventure_session_id = uuid.uuid4().hex
         self._raw_gvas = None
         self._save_type = None
         self.gvas_file = None

@@ -30,7 +30,6 @@ import { computed, ref } from 'vue'
 import PlayerInventory from '@/components/PlayerInventory.vue'
 import PlayerMapProgress from '@/components/PlayerMapProgress.vue'
 import GraduationKit from '@/components/GraduationKit.vue'
-import AdventureAssistant from '@/components/AdventureAssistant.vue'
 import SegmentedRange from '@/components/modules/SegmentedRange.vue'
 import NumberStepper from '@/components/modules/NumberStepper.vue'
 import TechCard from '@/components/TechCard.vue'
@@ -99,9 +98,6 @@ const technologyRows = computed(() => Object.entries(catalogsStore.technologiesB
       </button>
       <button type="button" :class="{ active: activeTab === 'map' }" @click="activeTab = 'map'">
         {{ appStore.getTranslatedText('Map_Title') }}
-      </button>
-      <button type="button" :class="{ active: activeTab === 'adventure' }" @click="activeTab = 'adventure'">
-        {{ appStore.getTranslatedText('Adventure_Title') }}
       </button>
       <button type="button" :class="{ active: activeTab === 'graduation' }" @click="activeTab = 'graduation'">
         {{ appStore.getTranslatedText('Graduation_Title') }}
@@ -261,7 +257,6 @@ const technologyRows = computed(() => Object.entries(catalogsStore.technologiesB
       </div>
     </section>
     </div>
-    <AdventureAssistant v-else-if="activeTab === 'adventure'" />
     <GraduationKit v-else-if="activeTab === 'graduation'" />
     <PlayerMapProgress v-else-if="activeTab === 'map'" />
     <PlayerInventory v-else />
