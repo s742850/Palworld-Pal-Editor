@@ -1,0 +1,629 @@
+{
+  "asOf": "2026-10-25",
+  "assets": [
+    {
+      "symbol": "USDT",
+      "name": "Tether",
+      "icon": "support/icons/tokens-USDT.svg"
+    },
+    {
+      "symbol": "USDC",
+      "name": "USD Coin",
+      "icon": "support/icons/tokens-USDC.svg"
+    },
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "icon": "support/icons/tokens-BTC.svg"
+    },
+    {
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "icon": "support/icons/tokens-ETH.svg"
+    }
+  ],
+  "routes": [
+    {
+      "id": "usdt-tron",
+      "asset": "USDT",
+      "network": "tron",
+      "networkName": "Tron (TRC20)",
+      "networkIcon": "support/icons/networks-tron.svg",
+      "exchange": "Kraken",
+      "address": "TXfq1bBkZvcDF9DS8ASjGGye7MQr3ykibE",
+      "qr": "support/receipts/29975d2ad20452b7.png",
+      "minimum": "2",
+      "minimumInclusive": true,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 1
+      }
+    },
+    {
+      "id": "usdt-arbitrum",
+      "asset": "USDT",
+      "network": "arbitrum",
+      "networkName": "Arbitrum One",
+      "networkIcon": "support/icons/networks-arbitrum-one.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "fcbb9",
+      "source": {
+        "batch": 1,
+        "photo": 2
+      }
+    },
+    {
+      "id": "usdt-ton",
+      "asset": "USDT",
+      "network": "ton",
+      "networkName": "TON",
+      "networkIcon": "support/icons/networks-ton.svg",
+      "exchange": "Binance",
+      "address": "UQAL_vsu6r7ApO4F0c2_ol1p1Ex70lFHga4Qox5Vpz1NV4VB",
+      "qr": "support/receipts/d0aad2fdd876bb6d.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "d_sDs",
+      "source": {
+        "batch": 1,
+        "photo": 3
+      }
+    },
+    {
+      "id": "usdt-avalanche",
+      "asset": "USDT",
+      "network": "avalanche",
+      "networkName": "Avalanche C-Chain",
+      "networkIcon": "support/icons/networks-avalanche.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "4a8c7",
+      "source": {
+        "batch": 1,
+        "photo": 4
+      }
+    },
+    {
+      "id": "usdt-celo",
+      "asset": "USDT",
+      "network": "celo",
+      "networkName": "Celo",
+      "networkIcon": "support/icons/networks-celo.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "83d5e",
+      "source": {
+        "batch": 1,
+        "photo": 5
+      }
+    },
+    {
+      "id": "usdt-kaia",
+      "asset": "USDT",
+      "network": "kaia",
+      "networkName": "Kaia",
+      "networkIcon": "support/icons/networks-kaia.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.000001",
+      "minimumInclusive": false,
+      "contract": "e4fdb",
+      "source": {
+        "batch": 1,
+        "photo": 6
+      }
+    },
+    {
+      "id": "usdt-opbnb",
+      "asset": "USDT",
+      "network": "opbnb",
+      "networkName": "opBNB",
+      "networkIcon": "support/icons/networks-binance-smart-chain.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "a96f3",
+      "source": {
+        "batch": 1,
+        "photo": 7
+      }
+    },
+    {
+      "id": "usdt-polkadot",
+      "asset": "USDT",
+      "network": "polkadot",
+      "networkName": "Polkadot Asset Hub (STATEMINT)",
+      "networkIcon": "support/icons/networks-polkadot.svg",
+      "exchange": "Binance",
+      "address": "16BsY4ZRbNQmEha2ChEZ5iNXHnjBxLhybTeUvtAi46pj6xNN",
+      "qr": "support/receipts/d1279217bfa9b0c8.png",
+      "minimum": "0.02",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 8
+      }
+    },
+    {
+      "id": "usdt-near",
+      "asset": "USDT",
+      "network": "near",
+      "networkName": "NEAR Protocol",
+      "networkIcon": "support/icons/networks-near-protocol.svg",
+      "exchange": "Binance",
+      "address": "a85d989cfc9629daa966c0ca989c1d3f066eb15ad094a7f460b7230c1dc2e904",
+      "qr": "support/receipts/8e6217210f8227a1.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "usdt.tether-token.near",
+      "source": {
+        "batch": 1,
+        "photo": 10
+      }
+    },
+    {
+      "id": "usdt-tezos",
+      "asset": "USDT",
+      "network": "tezos",
+      "networkName": "Tezos",
+      "networkIcon": "support/icons/tokens-XTZ.svg",
+      "exchange": "Binance",
+      "address": "tz2Fw9cgg38ESbBJSSSck6Da7yHxKeDZHC9r",
+      "qr": "support/receipts/111cef2241df8a0e.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "KWR8o",
+      "source": {
+        "batch": 1,
+        "photo": 11
+      }
+    },
+    {
+      "id": "usdt-bsc",
+      "asset": "USDT",
+      "network": "bsc",
+      "networkName": "BNB Smart Chain (BEP20)",
+      "networkIcon": "support/icons/networks-binance-smart-chain.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.01",
+      "minimumInclusive": false,
+      "contract": "97955",
+      "source": {
+        "batch": 1,
+        "photo": 12
+      }
+    },
+    {
+      "id": "usdt-ethereum",
+      "asset": "USDT",
+      "network": "ethereum",
+      "networkName": "Ethereum (ERC20)",
+      "networkIcon": "support/icons/networks-ethereum.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "31ec7",
+      "source": {
+        "batch": 1,
+        "photo": 13
+      }
+    },
+    {
+      "id": "usdt-polygon",
+      "asset": "USDT",
+      "network": "polygon",
+      "networkName": "Polygon PoS",
+      "networkIcon": "support/icons/networks-polygon.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.02",
+      "minimumInclusive": false,
+      "contract": "58e8f",
+      "source": {
+        "batch": 1,
+        "photo": 14
+      }
+    },
+    {
+      "id": "usdt-plasma",
+      "asset": "USDT",
+      "network": "plasma",
+      "networkName": "Plasma",
+      "networkIcon": "support/icons/networks-plasma.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.000001",
+      "minimumInclusive": false,
+      "contract": "25ebb",
+      "source": {
+        "batch": 1,
+        "photo": 15
+      }
+    },
+    {
+      "id": "usdt-aptos",
+      "asset": "USDT",
+      "network": "aptos",
+      "networkName": "Aptos",
+      "networkIcon": "support/icons/networks-aptos.svg",
+      "exchange": "Binance",
+      "address": "0xa63b9bcbe19c45d29be4e950e5ae3afe3f87ab9adbb2651b17562bd5afec9e74",
+      "qr": "support/receipts/0347e128809eec72.png",
+      "minimum": "0.00001",
+      "minimumInclusive": false,
+      "contract": "9dc2b",
+      "source": {
+        "batch": 1,
+        "photo": 16
+      }
+    },
+    {
+      "id": "usdt-solana",
+      "asset": "USDT",
+      "network": "solana",
+      "networkName": "Solana",
+      "networkIcon": "support/icons/networks-solana.svg",
+      "exchange": "Binance",
+      "address": "Bdk6UfAALP8DQfGUAenRjC7UpgGPgg4YU91vjAQQ7SUG",
+      "qr": "support/receipts/8240861027578312.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "nwNYB",
+      "source": {
+        "batch": 1,
+        "photo": 17
+      }
+    },
+    {
+      "id": "usdt-scroll",
+      "asset": "USDT",
+      "network": "scroll",
+      "networkName": "Scroll",
+      "networkIcon": "support/icons/networks-scroll.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.000001",
+      "minimumInclusive": false,
+      "contract": "099df",
+      "source": {
+        "batch": 1,
+        "photo": 20
+      }
+    },
+    {
+      "id": "usdt-kava",
+      "asset": "USDT",
+      "network": "kava",
+      "networkName": "Kava EVM",
+      "networkIcon": "support/icons/networks-kava.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "9109c",
+      "source": {
+        "batch": 1,
+        "photo": 21
+      }
+    },
+    {
+      "id": "btc-bsc",
+      "asset": "BTC",
+      "network": "bsc",
+      "networkName": "BNB Smart Chain (BEP20)",
+      "networkIcon": "support/icons/networks-binance-smart-chain.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.00000002",
+      "minimumInclusive": false,
+      "contract": "ead9c",
+      "source": {
+        "batch": 1,
+        "photo": 25
+      }
+    },
+    {
+      "id": "btc-ethereum",
+      "asset": "BTC",
+      "network": "ethereum",
+      "networkName": "Ethereum (ERC20)",
+      "networkIcon": "support/icons/networks-ethereum.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.00000002",
+      "minimumInclusive": false,
+      "contract": "22541",
+      "source": {
+        "batch": 1,
+        "photo": 26
+      }
+    },
+    {
+      "id": "btc-bitcoin",
+      "asset": "BTC",
+      "network": "bitcoin",
+      "networkName": "Bitcoin",
+      "networkIcon": "support/icons/networks-bitcoin.svg",
+      "exchange": "Binance",
+      "address": "167Msjp55yu4RU3kZUsJQeSisXyV5Rha4U",
+      "qr": "support/receipts/b3ea50f84043d6e8.png",
+      "minimum": "0.000005",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 27
+      }
+    },
+    {
+      "id": "btc-segwit",
+      "asset": "BTC",
+      "network": "segwit",
+      "networkName": "Bitcoin (SegWit)",
+      "networkIcon": "support/icons/networks-bitcoin.svg",
+      "exchange": "Binance",
+      "address": "bc1qzn5hdjap0r7ud7qrr3clu7x602zsnh4xtlvxms",
+      "qr": "support/receipts/efdd6207eb298f7d.png",
+      "minimum": "0.000006",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 28
+      }
+    },
+    {
+      "id": "eth-zksync",
+      "asset": "ETH",
+      "network": "zksync",
+      "networkName": "zkSync Era",
+      "networkIcon": "support/icons/networks-zksync.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "0800a",
+      "source": {
+        "batch": 1,
+        "photo": 29
+      }
+    },
+    {
+      "id": "eth-optimism",
+      "asset": "ETH",
+      "network": "optimism",
+      "networkName": "Optimism",
+      "networkIcon": "support/icons/networks-optimism.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 30
+      }
+    },
+    {
+      "id": "eth-arbitrum",
+      "asset": "ETH",
+      "network": "arbitrum",
+      "networkName": "Arbitrum One",
+      "networkIcon": "support/icons/networks-arbitrum-one.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 31
+      }
+    },
+    {
+      "id": "eth-ethereum",
+      "asset": "ETH",
+      "network": "ethereum",
+      "networkName": "Ethereum (ERC20)",
+      "networkIcon": "support/icons/networks-ethereum.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 32
+      }
+    },
+    {
+      "id": "eth-base",
+      "asset": "ETH",
+      "network": "base",
+      "networkName": "Base",
+      "networkIcon": "support/icons/networks-base.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "",
+      "source": {
+        "batch": 1,
+        "photo": 33
+      }
+    },
+    {
+      "id": "eth-bsc",
+      "asset": "ETH",
+      "network": "bsc",
+      "networkName": "BNB Smart Chain (BEP20)",
+      "networkIcon": "support/icons/networks-binance-smart-chain.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.0000003",
+      "minimumInclusive": false,
+      "contract": "933f8",
+      "source": {
+        "batch": 1,
+        "photo": 34
+      }
+    },
+    {
+      "id": "usdc-optimism",
+      "asset": "USDC",
+      "network": "optimism",
+      "networkName": "Optimism",
+      "networkIcon": "support/icons/networks-optimism.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "7ff85",
+      "source": {
+        "batch": 2,
+        "photo": 1
+      }
+    },
+    {
+      "id": "usdc-arbitrum",
+      "asset": "USDC",
+      "network": "arbitrum",
+      "networkName": "Arbitrum One",
+      "networkIcon": "support/icons/networks-arbitrum-one.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "e5831",
+      "source": {
+        "batch": 2,
+        "photo": 2
+      }
+    },
+    {
+      "id": "usdc-polygon",
+      "asset": "USDC",
+      "network": "polygon",
+      "networkName": "Polygon PoS",
+      "networkIcon": "support/icons/networks-polygon.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "c3359",
+      "source": {
+        "batch": 2,
+        "photo": 3
+      }
+    },
+    {
+      "id": "usdc-base",
+      "asset": "USDC",
+      "network": "base",
+      "networkName": "Base",
+      "networkIcon": "support/icons/networks-base.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "02913",
+      "source": {
+        "batch": 2,
+        "photo": 4
+      }
+    },
+    {
+      "id": "usdc-ethereum",
+      "asset": "USDC",
+      "network": "ethereum",
+      "networkName": "Ethereum (ERC20)",
+      "networkIcon": "support/icons/networks-ethereum.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "6eb48",
+      "source": {
+        "batch": 2,
+        "photo": 5
+      }
+    },
+    {
+      "id": "usdc-solana",
+      "asset": "USDC",
+      "network": "solana",
+      "networkName": "Solana",
+      "networkIcon": "support/icons/networks-solana.svg",
+      "exchange": "Binance",
+      "address": "Bdk6UfAALP8DQfGUAenRjC7UpgGPgg4YU91vjAQQ7SUG",
+      "qr": "support/receipts/8240861027578312.png",
+      "minimum": "0.001",
+      "minimumInclusive": false,
+      "contract": "TDt1v",
+      "source": {
+        "batch": 2,
+        "photo": 6
+      }
+    },
+    {
+      "id": "usdc-bsc",
+      "asset": "USDC",
+      "network": "bsc",
+      "networkName": "BNB Smart Chain (BEP20)",
+      "networkIcon": "support/icons/networks-binance-smart-chain.svg",
+      "exchange": "Binance",
+      "address": "0xc809414009df8ffa5b69c5dc198661c2332ce993",
+      "qr": "support/receipts/24c857a974e82370.png",
+      "minimum": "0.01",
+      "minimumInclusive": false,
+      "contract": "d580d",
+      "source": {
+        "batch": 2,
+        "photo": 7
+      }
+    }
+  ],
+  "bank": {
+    "bank": "CTBC Bank",
+    "code": "822",
+    "branch": "0026",
+    "account": "026540649002",
+    "qr": "support/receipts/ctbc.png"
+  }
+}

@@ -2,6 +2,7 @@
 import { computed, nextTick, ref, watch } from 'vue'
 
 import UiIcon from '@/components/modules/UiIcon.vue'
+import SupportReceipts from '@/components/SupportReceipts.vue'
 import { supportConfig } from '@/support-config'
 import { useAppStore } from '@/stores/app'
 import { useAppShellStore } from '@/stores/app-shell'
@@ -75,7 +76,7 @@ watch(() => shell.donationPromptOpen, async visible => {
         <img :src="publicAsset('icons/512.png')" alt="" class="support-logo">
         <div>
           <h2 id="support-dialog-title">{{ appStore.getTranslatedText('SupportDialog_Title') }}</h2>
-          <p id="support-dialog-intro">{{ appStore.getTranslatedText(supportConfig ? 'Support_Fork_Intro' : 'SupportDialog_Intro') }}</p>
+          <p id="support-dialog-intro">{{ appStore.getTranslatedText('Receipts_Intro') }}</p>
         </div>
         <button
           ref="closeButton"
@@ -89,6 +90,7 @@ watch(() => shell.donationPromptOpen, async visible => {
       </header>
 
       <div class="support-content">
+        <SupportReceipts v-if="shell.donationPromptOpen" />
         <section v-if="supportConfig" class="support-panel support-fork">
           <h3>{{ appStore.getTranslatedText('Support_Fork_Title') }}</h3>
           <p>{{ supportConfig.name }}<span v-if="supportConfig.asset"> · {{ supportConfig.asset }}</span><span v-if="supportConfig.network"> · {{ supportConfig.network }}</span></p>
@@ -103,8 +105,8 @@ watch(() => shell.donationPromptOpen, async visible => {
         <section class="support-panel support-financial">
           <div class="support-section-heading">
             <div>
-              <h3>{{ appStore.getTranslatedText('SupportDialog_Financial_Title') }}</h3>
-              <p>{{ appStore.getTranslatedText('SupportDialog_Financial_Description') }}</p>
+              <h3>{{ appStore.getTranslatedText('Receipts_OriginalTitle') }}</h3>
+              <p>{{ appStore.getTranslatedText('Receipts_OriginalDescription') }} <a href="https://github.com/KrisCris" target="_blank" rel="noopener noreferrer">_connlost (KrisCris)</a></p>
             </div>
             <UiIcon name="heart" />
           </div>
@@ -127,7 +129,7 @@ watch(() => shell.donationPromptOpen, async visible => {
 
           <article id="support-payment-detail" class="support-payment-detail">
             <div class="support-payment-copy">
-              <h4>{{ appStore.getTranslatedText('SupportDialog_Payment_Title', [selectedPayment.label]) }}</h4>
+              <h4>{{ appStore.getTranslatedText('Receipts_OriginalPayment', [selectedPayment.label]) }}</h4>
               <p>
                 {{ appStore.getTranslatedText(
                   selectedPayment.href ? 'SupportDialog_Online_Description' : 'SupportDialog_QR_Description',
@@ -242,7 +244,7 @@ watch(() => shell.donationPromptOpen, async visible => {
       >
         <header>
           <h3 id="support-qr-title">
-            {{ appStore.getTranslatedText('SupportDialog_QR_Title', [expandedPayment.label]) }}
+            {{ appStore.getTranslatedText('Receipts_OriginalPayment', [expandedPayment.label]) }}
           </h3>
           <button
             ref="qrCloseButton"

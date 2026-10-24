@@ -1,5 +1,13 @@
 # Release notes / 更新說明
 
+## 2026-10-25 · Maintainer support receipts / 後續開發者收款介面
+
+- 贊助視窗新增「先選幣別、再選區塊鏈網路」流程，支援 USDT 18、USDC 7、BTC 4、ETH 6 個選項；幣別與網路均附本機圖示，並顯示收款地址、QR Code、最低入帳金額與適用代幣提示。
+- 新增中國信託台幣轉帳與帳號複製。41 張來源圖全數解碼，排除 5 張重複加密貨幣畫面；相同地址的不同網路保留獨立選項。
+- 明確標示新收款資料屬於後續開發者 s742850，原作者為 _connlost（GitHub：KrisCris），保留原作者原有收款方式與獨立標示。
+- Added coin-first, network-second support payments with local coin/network icons, 35 crypto routes, QR codes, copy actions, and CTBC TWD bank transfer. The subsequent developer (s742850) and original author (_connlost / KrisCris) have separate recipient labels and payment sections.
+- 驗證 / Validation：240 個前端測試、正式建置、PWA 檢查通過；瀏覽器逐一驗證 35 個路由、切換重置、搜尋、剪貼簿、手機版及原作者 QR 標示。Flask 實際靜態路由驗證新版 bundle 與全部 36 個收款圖片。所有產生的 QR 再解碼與來源比對。未進行真實轉帳、交易所帳戶可用性驗證或安裝檔發布。 / 240 frontend tests, production build, PWA checks, browser interaction checks, and Flask-served assets passed. QR payloads round-tripped against sources. No live payments, exchange account availability verification, or installer release.
+
 ## 2026-10-23 · Mount kit backpack-capacity fix / 坐騎套組背包容量修正
 
 - 飛行／陸地／水上坐騎套組不再因一般背包缺少 21 個終盤物資空格而整批停止；該套組只新增 5 隻坐騎及缺少的對應鞍具，重要物品欄仍維持容量預檢與整批回滾。
