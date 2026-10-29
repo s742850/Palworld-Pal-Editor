@@ -1,5 +1,7 @@
 # 2026-10-30 Nexus fork release
 
+- Remove the screenshot-date and exchange-limit explanatory paragraph from the maintainer receipt UI, as requested. / 依要求移除贊助收款頁的截圖日期及交易所限制說明段落。
+
 - Project, download and issue links now point to s742850/Palworld-Pal-Editor; original author credits are retained.
 - Fork builds no longer claim upstream official-build status or check upstream releases on startup.
 - Windows EXE is rebuilt with the latest WebUI. Source snapshot and license accompany the Nexus package.

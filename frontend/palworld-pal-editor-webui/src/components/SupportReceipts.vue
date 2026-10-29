@@ -92,7 +92,6 @@ async function copyAddress() {
           <div><dt>{{ t('Minimum') }}</dt><dd>{{ selected.minimumInclusive ? '≥' : '>' }} {{ selected.minimum }} {{ selected.asset }}</dd></div>
           <div v-if="selected.contract"><dt>{{ t(selected.network === 'near' ? 'Contract' : 'ContractSuffix') }}</dt><dd>{{ selected.network === 'near' ? '' : '…' }}{{ selected.contract }}</dd></div>
         </dl>
-        <p class="muted small">{{ t('Snapshot', [receipts.asOf]) }}</p>
       </article>
       <div v-else class="receipt-empty">
         <span class="empty-mark" aria-hidden="true">QR</span>
