@@ -107,7 +107,7 @@ onMounted(shell.loadLatestRelease)
                 <UiIcon name="branch" />
                 <span><strong>GitHub Releases</strong><small>{{ appStore.getTranslatedText('Entry_Download_GitHub_Description') }}</small></span>
               </a>
-              <a target="_blank" href="https://www.nexusmods.com/palworld/mods/995?tab=files">
+              <a target="_blank" href="https://www.nexusmods.com/palworld/mods/6007?tab=files">
                 <UiIcon name="download" />
                 <span><strong>Nexus Mods</strong><small>{{ appStore.getTranslatedText('Entry_Download_Nexus_Description') }}</small></span>
               </a>
