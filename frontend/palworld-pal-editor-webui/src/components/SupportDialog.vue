@@ -187,7 +187,7 @@ watch(() => shell.donationPromptOpen, async visible => {
               </span>
               <UiIcon name="external-link" />
             </a>
-            <a href="https://github.com/KrisCris/Palworld-Pal-Editor" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/s742850/Palworld-Pal-Editor" target="_blank" rel="noopener noreferrer">
               <UiIcon name="pull-request" />
               <span>
                 <strong>{{ appStore.getTranslatedText('Entry_Support_Code_Title') }}</strong>
@@ -195,7 +195,7 @@ watch(() => shell.donationPromptOpen, async visible => {
               </span>
               <UiIcon name="external-link" />
             </a>
-            <a href="https://github.com/KrisCris/Palworld-Pal-Editor/issues" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/s742850/Palworld-Pal-Editor/issues" target="_blank" rel="noopener noreferrer">
               <UiIcon name="bug" />
               <span>
                 <strong>{{ appStore.getTranslatedText('Entry_Support_Issue_Title') }}</strong>
@@ -217,7 +217,7 @@ watch(() => shell.donationPromptOpen, async visible => {
             {{ appStore.getTranslatedText('SupportDialog_Not_Now') }}
           </button>
           <a
-            href="https://github.com/KrisCris/Palworld-Pal-Editor"
+            href="https://github.com/s742850/Palworld-Pal-Editor"
             target="_blank"
             rel="noopener noreferrer"
             class="support-primary"

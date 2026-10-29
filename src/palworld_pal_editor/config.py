@@ -109,9 +109,9 @@ VERSION = "0.0.0"
 RELEASE_TYPE = "NIGHTLY"
 BUILD_TIME = "0000000001"
 GIT_HASH = "0000000"
-REPO = "undefined"
+REPO = "s742850/Palworld-Pal-Editor"
 
-NEXUS_URL = "https://www.nexusmods.com/palworld/mods/995?tab=files"
+NEXUS_URL = "https://www.nexusmods.com/palworld/mods/6007?tab=files"
 
 def version_info() -> str:
     if GIT_HASH == "0000000":
@@ -122,12 +122,13 @@ def version_info() -> str:
         return f"{VERSION}-{RELEASE_TYPE}-{GIT_HASH}"
     
 def is_gh_build() -> bool:
-    return GIT_HASH != "0000000"
+    # A fork must not claim to be an upstream official build or check upstream updates.
+    return GIT_HASH != "0000000" and REPO.startswith("KrisCris/Palworld-Pal-Editor")
     
 async def get_new_version() -> Optional[tuple[str, str]]:
     if not is_gh_build():
         return None
-    releases_url = "https://api.github.com/repos/KrisCris/Palworld-Pal-Editor/releases/latest"
+    releases_url = "https://api.github.com/repos/s742850/Palworld-Pal-Editor/releases/latest"
     async def fetch_latest_release():
         async with aiohttp.ClientSession() as session:
             async with session.get(releases_url) as resp:

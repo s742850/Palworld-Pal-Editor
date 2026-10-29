@@ -1,3 +1,10 @@
+# 2026-10-30 Nexus fork release
+
+- Project, download and issue links now point to s742850/Palworld-Pal-Editor; original author credits are retained.
+- Fork builds no longer claim upstream official-build status or check upstream releases on startup.
+- Windows EXE is rebuilt with the latest WebUI. Source snapshot and license accompany the Nexus package.
+- 專案、下載與問題回報改連到修改版 GitHub，保留原作者來源；停用上游更新檢查，重建 Windows EXE 並附對應原始碼。
+
 # Release notes / 更新說明
 
 ## 2026-10-25 · Maintainer support receipts / 後續開發者收款介面

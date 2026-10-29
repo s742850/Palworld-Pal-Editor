@@ -1,5 +1,7 @@
 # Palworld Pal Editor
 
+Unofficial fork maintained by **s742850**. Original project: [_connlost / KrisCris](https://github.com/KrisCris/Palworld-Pal-Editor). Fork source and issue reports: https://github.com/s742850/Palworld-Pal-Editor. Nexus builds disable upstream update checks.
+
 Local fork: [Windows installation, inventory editing, and security notes (Traditional Chinese)](WINDOWS_GUIDE.zh-TW.md).
 
 Fork updates: [bilingual release notes](RELEASE_NOTES.md) · [combat, worker and mount endgame kits](ENDGAME_KIT.md).
@@ -9,9 +11,9 @@ Fork updates: [bilingual release notes](RELEASE_NOTES.md) · [combat, worker and
 </p>
 
 <p align="center">
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/KrisCris/Palworld-Pal-Editor?display_name=tag&style=for-the-badge"></a>
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/releases"><img alt="Total downloads" src="https://img.shields.io/github/downloads/KrisCris/Palworld-Pal-Editor/total?style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/s742850/Palworld-Pal-Editor?display_name=tag&style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/releases"><img alt="Total downloads" src="https://img.shields.io/github/downloads/s742850/Palworld-Pal-Editor/total?style=for-the-badge"></a>
   <a href="./LICENSE"><img alt="GPL-3.0 license" src="https://img.shields.io/github/license/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
 </p>
 <p align="center">
@@ -77,9 +79,9 @@ Palworld Pal Editor fully supports Deutsch, English, Español, Español (México
 
 ## Download
 
-- [GitHub Releases](https://github.com/KrisCris/Palworld-Pal-Editor/releases) — official releases and changelogs
-- [Nexus Mods](https://www.nexusmods.com/palworld/mods/995) — download the latest release from Nexus
-- [Nightly Release](https://github.com/KrisCris/Palworld-Pal-Editor/releases/tag/auto-nightly-buiilds) — automatically updated development builds
+- [GitHub Releases](https://github.com/s742850/Palworld-Pal-Editor/releases) — official releases and changelogs
+- [Nexus Mods](https://www.nexusmods.com/palworld/mods/6007) — download the latest release from Nexus
+- [Nightly Release](https://github.com/s742850/Palworld-Pal-Editor/releases/tag/auto-nightly-buiilds) — automatically updated development builds
 
 For most users, the pre-built desktop application is recommended. It does not require a separate Python installation.
 
@@ -296,13 +298,13 @@ Only the 1.0 showcase reflects the current editor. The other videos are kept as 
 This project is developed and maintained by _connlost in spare time.
 
 - [Join the Discord community](https://discord.gg/FnuA95nMJ8) to ask questions and help other users.
-- [Report reproducible bugs](https://github.com/KrisCris/Palworld-Pal-Editor/issues) with logs and save details that are safe to share.
+- [Report reproducible bugs](https://github.com/s742850/Palworld-Pal-Editor/issues) with logs and save details that are safe to share.
 - Contribute focused, maintainable fixes through pull requests.
 - Support continued maintenance through [Ko-fi](https://ko-fi.com/connlost), [PayPal](https://www.paypal.com/paypalme/c0nnlost?country.x=US&locale.x=en_US), [AliPay](https://github.com/KrisCris/Palworld-Pal-Editor/assets/38860226/78d85efd-3a3f-4007-a8a3-4c7ada0cfc5b), or [WeChat Pay](https://github.com/user-attachments/assets/8dcbb43f-1270-49fd-b621-db70d2833de5).
 
 ## Contributing
 
-Search existing [issues](https://github.com/KrisCris/Palworld-Pal-Editor/issues) before opening a report or request. For code changes, work from the latest development branch, keep each pull request focused, explain user-visible behavior, and include screenshots for interface changes.
+Search existing [issues](https://github.com/s742850/Palworld-Pal-Editor/issues) before opening a report or request. For code changes, work from the latest development branch, keep each pull request focused, explain user-visible behavior, and include screenshots for interface changes.
 
 ## Credits
 

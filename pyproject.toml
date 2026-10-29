@@ -35,11 +35,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/KrisCris/Palworld-Pal-Editor"
-Documentation = "https://github.com/KrisCris/Palworld-Pal-Editor"
-Repository = "https://github.com/KrisCris/Palworld-Pal-Editor.git"
-Issues = "https://github.com/KrisCris/Palworld-Pal-Editor/issues"
-Changelog = "https://github.com/KrisCris/Palworld-Pal-Editor"
+Homepage = "https://github.com/s742850/Palworld-Pal-Editor"
+Documentation = "https://github.com/s742850/Palworld-Pal-Editor"
+Repository = "https://github.com/s742850/Palworld-Pal-Editor.git"
+Issues = "https://github.com/s742850/Palworld-Pal-Editor/issues"
+Changelog = "https://github.com/s742850/Palworld-Pal-Editor"
 
 [tool.setuptools.packages.find]
 where = ["src"]

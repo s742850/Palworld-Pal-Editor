@@ -1,5 +1,7 @@
 # Palworld Pal Editor
 
+Unofficial fork maintained by **s742850**. Original project: [_connlost / KrisCris](https://github.com/KrisCris/Palworld-Pal-Editor). Fork source and issue reports: https://github.com/s742850/Palworld-Pal-Editor. Nexus builds disable upstream update checks.
+
 本地修改版的材料、背包、装备操作与 Windows 安装说明：[繁體中文使用手冊](WINDOWS_GUIDE.zh-TW.md)。
 
 修改版更新：[中英文更新说明](RELEASE_NOTES.md) · [战斗、基地与坐骑毕业套组](ENDGAME_KIT.md)。
@@ -9,9 +11,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/releases/latest"><img alt="最新版本" src="https://img.shields.io/github/v/release/KrisCris/Palworld-Pal-Editor?display_name=tag&style=for-the-badge"></a>
-  <a href="https://github.com/KrisCris/Palworld-Pal-Editor/releases"><img alt="总下载量" src="https://img.shields.io/github/downloads/KrisCris/Palworld-Pal-Editor/total?style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/releases/latest"><img alt="最新版本" src="https://img.shields.io/github/v/release/s742850/Palworld-Pal-Editor?display_name=tag&style=for-the-badge"></a>
+  <a href="https://github.com/s742850/Palworld-Pal-Editor/releases"><img alt="总下载量" src="https://img.shields.io/github/downloads/s742850/Palworld-Pal-Editor/total?style=for-the-badge"></a>
   <a href="./LICENSE"><img alt="GPL-3.0 许可证" src="https://img.shields.io/github/license/KrisCris/Palworld-Pal-Editor?style=for-the-badge"></a>
 </p>
 <p align="center">
@@ -77,9 +79,9 @@ Palworld Pal Editor 完整支持 Deutsch、English、Español、Español (Méxic
 
 ## 下载
 
-- [GitHub Releases](https://github.com/KrisCris/Palworld-Pal-Editor/releases) — 正式版本与更新记录
-- [Nexus Mods](https://www.nexusmods.com/palworld/mods/995) — 从 Nexus 下载最新正式版
-- [Nightly Release](https://github.com/KrisCris/Palworld-Pal-Editor/releases/tag/auto-nightly-buiilds) — 自动更新的开发测试版本
+- [GitHub Releases](https://github.com/s742850/Palworld-Pal-Editor/releases) — 正式版本与更新记录
+- [Nexus Mods](https://www.nexusmods.com/palworld/mods/6007) — 从 Nexus 下载最新正式版
+- [Nightly Release](https://github.com/s742850/Palworld-Pal-Editor/releases/tag/auto-nightly-buiilds) — 自动更新的开发测试版本
 
 建议普通用户直接下载打包好的桌面应用，无需另外安装 Python。
 
@@ -296,13 +298,13 @@ WebUI 是一个渐进式网页应用（PWA）：浏览器可以将它安装到�
 本项目由 _connlost 利用业余时间开发和维护。
 
 - [加入 Discord 社区](https://discord.gg/FnuA95nMJ8)，提问或帮助其他用户。
-- 在 [GitHub Issues](https://github.com/KrisCris/Palworld-Pal-Editor/issues) 报告可复现的问题，并附上可以安全分享的日志和存档信息。
+- 在 [GitHub Issues](https://github.com/s742850/Palworld-Pal-Editor/issues) 报告可复现的问题，并附上可以安全分享的日志和存档信息。
 - 通过 Pull Request 贡献目标明确、便于维护的修复。
 - 通过 [Ko-fi](https://ko-fi.com/connlost)、[PayPal](https://www.paypal.com/paypalme/c0nnlost?country.x=US&locale.x=en_US)、[支付宝](https://github.com/KrisCris/Palworld-Pal-Editor/assets/38860226/78d85efd-3a3f-4007-a8a3-4c7ada0cfc5b) 或 [微信支付](https://github.com/user-attachments/assets/8dcbb43f-1270-49fd-b621-db70d2833de5) 支持后续维护。
 
 ## 参与贡献
 
-提交问题或功能请求前，请先搜索现有 [Issues](https://github.com/KrisCris/Palworld-Pal-Editor/issues)。贡献代码时，请基于最新开发分支、保持每个 Pull Request 目标单一、说明用户可见的变化，并为界面修改提供截图。
+提交问题或功能请求前，请先搜索现有 [Issues](https://github.com/s742850/Palworld-Pal-Editor/issues)。贡献代码时，请基于最新开发分支、保持每个 Pull Request 目标单一、说明用户可见的变化，并为界面修改提供截图。
 
 ## 鸣谢
 

@@ -11,7 +11,7 @@ body:
       options:
         - label: I have searched existing issues
         - label: This issue is not a duplicate of an existing one
-        - label: I have read the [README](https://github.com/KrisCris/Palworld-Pal-Editor?tab=readme-ov-file#palworld-pal-editor)
+        - label: I have read the [README](https://github.com/s742850/Palworld-Pal-Editor?tab=readme-ov-file#palworld-pal-editor)
         - label: I have attached logs to this bug report (failure to include logs will mean your issue may not be responded to).
         - label: I have checked for both game and editor updates, and understand that issues on older versions may not be resolved.
 

@@ -11,7 +11,7 @@ body:
       options:
         - label: I have searched existing feature requests
         - label: This feature is not a duplicate of an existing one
-        - label: I have read the [README](https://github.com/KrisCris/Palworld-Pal-Editor?tab=readme-ov-file#palworld-pal-editor)
+        - label: I have read the [README](https://github.com/s742850/Palworld-Pal-Editor?tab=readme-ov-file#palworld-pal-editor)
         - label: I have checked for both game and editor updates, and understand that feature requests for older versions may not be considered.
 
   - type: textarea

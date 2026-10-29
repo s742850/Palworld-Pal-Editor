@@ -69,14 +69,14 @@ onMounted(shell.loadLatestRelease)
                   <small>{{ appStore.getTranslatedText('Entry_Support_Community_Description') }}</small>
                 </span>
               </a>
-              <a class="entry-action" target="_blank" href="https://github.com/KrisCris/Palworld-Pal-Editor">
+              <a class="entry-action" target="_blank" href="https://github.com/s742850/Palworld-Pal-Editor">
                 <UiIcon name="pull-request" />
                 <span>
                   <strong>{{ appStore.getTranslatedText('Entry_Support_Code_Title') }}</strong>
                   <small>{{ appStore.getTranslatedText('Entry_Support_Code_Description') }}</small>
                 </span>
               </a>
-              <a class="entry-action" target="_blank" href="https://github.com/KrisCris/Palworld-Pal-Editor/issues">
+              <a class="entry-action" target="_blank" href="https://github.com/s742850/Palworld-Pal-Editor/issues">
                 <UiIcon name="bug" />
                 <span>
                   <strong>{{ appStore.getTranslatedText('Entry_Support_Issue_Title') }}</strong>
@@ -103,7 +103,7 @@ onMounted(shell.loadLatestRelease)
               <span>{{ appStore.getTranslatedText('Entry_Downloads_Subtitle') }}</span>
             </div>
             <div class="entry-download-grid">
-              <a target="_blank" href="https://github.com/KrisCris/Palworld-Pal-Editor/releases">
+              <a target="_blank" href="https://github.com/s742850/Palworld-Pal-Editor/releases">
                 <UiIcon name="branch" />
                 <span><strong>GitHub Releases</strong><small>{{ appStore.getTranslatedText('Entry_Download_GitHub_Description') }}</small></span>
               </a>
